@@ -1,0 +1,148 @@
+# conky configuration
+#
+# The list of variables has been removed from this file in favour
+# of keeping the documentation more maintainable.
+# Check http://conky.sf.net for an up-to-date-list.
+#
+# For ideas about how to modify conky, please see:
+# http://crunchbanglinux.org/forums/topic/59/my-conky-config/
+#
+# For help with conky, please see:
+# http://crunchbanglinux.org/forums/topic/2047/conky-help/
+#
+# Enjoy! :)
+##############################################
+# Settings
+##############################################
+background no
+use_xft yes
+#xftfont Liberation Sans:size=12
+xftfont Monospace:size=10
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+#own_window_argb_visual yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 250 250
+maximum_width 250
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color 909090
+#default_color 828282
+color0 ffffff
+color1 bdbdbd
+#color1 ababab
+default_shade_color 000000
+default_outline_color 656667
+alignment top_right
+gap_x 13
+gap_y 5
+#gap_y 105
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+##############################################
+#  Output
+##############################################
+TEXT
+
+# SYSTEM INFO
+#${font weight=bold}${color0}S Y S T E M    I N F O${color}${font}
+#${color0}${hr}${color} 
+#${color1}Kernel:${color} $alignr $kernel
+#${color1}Uptime:${color} $alignr $uptime
+#${color1}Host:${color} $alignr $nodename
+
+# CPU
+${font weight=bold}${color0}C P U${color}${font} 
+${color0}${hr}${color}
+${color1}⊞1 ${color}${hwmon temp 2}°C ${goto 95}${cpu cpu0}${goto 112}% ${goto 140}${color1}⊞2 ${color}${hwmon temp 3}°C ${goto 229}${cpu cpu1}${goto 246}%
+${cpugraph cpu0 20,115}${offset 20}${cpugraph cpu1 20,115}
+${color1}⊞3 ${color}${hwmon temp 4}°C ${goto 95}${cpu cpu3}${goto 112}% ${goto 140}${color1}⊞4 ${color}${hwmon temp 5}°C ${goto 229}${cpu cpu4}${goto 246}%
+${cpugraph cpu2 20,115}${offset 20}${cpugraph cpu3 20,115}
+
+
+# GPU
+${font weight=bold}${color0}G P U${color}${font} 
+${color0}${hr}${color}
+${color1}Temp:${color} $alignr${nvidia temp}°C
+${color1}Threshold:${color} $alignr${nvidia threshold}°C
+${color1}Graphics Clock:${color} $alignr${nvidia gpufreq}MHz
+${color1}Memory Clock:${color} $alignr${nvidia memfreq}MHz
+
+
+# MEMORY
+${font weight=bold}${color0}M E M O R Y${color}${font}
+${color0}${hr}${color}
+${color1}Root${color} $alignr${fs_used /} / ${fs_size /}
+${fs_bar 5, 250 /}
+${color1}Home${color} $alignr${fs_used /home} / ${fs_size /home}
+${fs_bar 5, 250 /home}
+${color1}RAM${color} $alignr$mem / $memmax
+${membar 5, 250}
+${color1}Swap${color} $alignr$swap / $swapmax
+${fs_bar 5, 250 $swap}
+
+
+# NETWORK
+${font weight=bold}${color0}N E T W O R K${color}${font}
+${color0}${hr}${color}
+${color1}▲${color} ${upspeed eth0}${goto 140}${color1}▼${color} ${downspeed eth0}
+${upspeedgraph eth0 20, 115}${offset 20}${downspeedgraph eth0 20, 115}
+${color1}Local IP:${color} $alignr ${addr eth0}
+
+
+# PROCESSES
+${font weight=bold}${color0}P R O C E S S E S${color}${font}
+${color0}${hr}${color}
+${color1}Total:${color} $alignr $processes
+${color1}Running:${color} $alignr $running_processes
+    
+${color1}Name $alignr PID    CPU${color}
+${top_time name 1} $alignr ${top_time pid 1} ${top_time cpu 1}
+${top_time name 2} $alignr ${top_time pid 2} ${top_time cpu 2}
+${top_time name 3} $alignr ${top_time pid 3} ${top_time cpu 3}
+${top_time name 4} $alignr ${top_time pid 4} ${top_time cpu 4}
+${top_time name 5} $alignr ${top_time pid 5} ${top_time cpu 5}
+${top_time name 6} $alignr ${top_time pid 6} ${top_time cpu 6}
+${top_time name 7} $alignr ${top_time pid 7} ${top_time cpu 7}
+${top_time name 8} $alignr ${top_time pid 8} ${top_time cpu 8}
+${top_time name 9} $alignr ${top_time pid 9} ${top_time cpu 9}
+${top_time name 10} $alignr ${top_time pid 10} ${top_time cpu 10}
+
+# SHORTCUT KEYS
+#${font weight=bold}${color0}S H O R T C U T    K E Y S${color}${font}
+#${color0}${hr}${color}
+#${color0}${font Monospace:size=18}⌃⌥${font}${color}
+#${color1} + Backspace${color} $alignr Kill X
+#${color1} + ${font FontAwesome}${font} || ${font FontAwesome}${font}${color} $alignr Shift Desktops
+#${color1} + F1${color} $alignr tty1 Console
+#---
+#${color0}${font Monospace:size=18}⌥${font}${color}
+#${color1} + Space${color} $alignr Window Menu
+#${color1} + ${font Monospace}⇧${font}${color} $alignr Change Language
+#${color1} + F2${color} $alignr Run Dialog
+#${color1} + F3${color} $alignr Alt Menu
+#${color1} + F4${color} $alignr Close Window
+#---
+#${color0}${font FontAwesome:size=15}${font}${offset 4}${color}
+#${color1} + Space${color} $alignr Main Menu
+#${color1} + ${font Monospace}↹${font}${color} $alignr Client Menu
+#${color1} + T${color} $alignr Terminal
+#${color1} + F${color} $alignr File Manager
+#${color1} + E${color} $alignr Editor
+#${color1} + M${color} $alignr Media Player
+#${color1} + W${color} $alignr Web Browser
+#${color1} + H${color} $alignr Task Manager
+#${color1} + L${color} $alignr Lock Screen
+#${color1} + V${color} $alignr Volume Control
+#${color1} + X${color} $alignr Logout
+#---
+#${color0}${font FontAwesome:size=18}${font}${color} $alignr Screenshot
