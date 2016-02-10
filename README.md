@@ -4,20 +4,20 @@ A collection of my dotfiles.
 
 ## Installation
 
-1. Clone the repo and setup the config directory: 
+Clone the repo and setup the config directory: 
 ```
 cd
 git clone https://github.com/bananana/dotifles
 mv dotfiles/ .dotfiles/
 ```
 
-2. If you're going to use the vim config, then you have to initialize the various bundles:
+If you're going to use the vim config, then you have to initialize the various bundles:
 ```
 cd .dotfiles
 git submodule update --init
 ```
 
-3. Use [GNU Stow](https://packages.debian.org/jessie/stow) to access the files more efficienly. From the *dotfiles* directory run the `stow` command with the config you want applied:
+Use [GNU Stow](https://packages.debian.org/jessie/stow) to access the files more efficienly. From the *dotfiles* directory run the `stow` command with the config you want applied:
 ```
 cd .dotfiles
 stow vim
