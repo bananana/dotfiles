@@ -9,12 +9,17 @@ Clone the repo and setup the config directory:
 cd
 git clone https://github.com/bananana/dotifles
 mv dotfiles/ .dotfiles/
+cd .dotfiles
 ```
 
 If you're going to use the vim config, then you have to initialize the various bundles:
 ```
-cd .dotfiles
 git submodule update --init
+```
+
+To update the bundled plugins after installation, run this:
+```
+git submodule foreach git pull orignin master
 ```
 
 Use [GNU Stow](https://packages.debian.org/jessie/stow) to access the files more efficienly. From the *dotfiles* directory run the `stow` command with the config you want applied:
