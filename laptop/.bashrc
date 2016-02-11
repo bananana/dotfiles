@@ -16,12 +16,12 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+# append to the history file, don't overwrite it
+shopt -s histappend
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -29,7 +29,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -53,18 +53,28 @@ if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
+    # a case would tend to support setf rather than setaf.)
 	color_prompt=yes
     else
 	color_prompt=
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    #PS1='\n\[\033[1;37m\]\342\224\214\342\224\200[\[\033[1;33m\]\u\[\033[1;37m\]@\[\033[1;96m\]\h\[\033[1;37m\]]\342\224\200[\[\033[1;34m\]\w\[\033[1;37m\]]\n\[\033[1;37m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\] '
-    PS1='\n\[\033[1;37m\]\342\224\214\342\224\200[\u@\h]\342\224\200[\[\033[1;34m\]\w\[\033[1;37m\]]\n\[\033[1;37m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\] '
+# set some color variables to makes things easier on the eyes
+c_white_bold="\[\e[1;37m\]"
+c_blue_bold="\[\e[1;34m\]"
+c_red_bold="\[\e[1;31m\]"
+c_reset="\[\e[0m\]"
 
+# display root's username in red
+if [ $USER = root ]; then
+    user_color_prompt="${c_red_bold}\u${c_white_bold}"
+else
+    user_color_prompt="\u"
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1="${debian_chroot:+($debian_chroot)}\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_white_bold}]\n${c_white_bold}└──╼${c_reset} "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
