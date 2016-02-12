@@ -34,17 +34,17 @@ stow vim
 
 A fairly standard bash config, includes a custom PS1 prompt and a few aliases.
 
-### bash_alt
+### bash-eOS
 
 Slightly differnt bash config that includes customizations for pantheon-terminal (a terminal for Elementary OS).
 
-### conky
+### conky-crunchbang
 
-Conky config inspired by original crunchbang 
+Conky config inspired by original crunchbang.
 
 ### tmux
 
-A basic tmux config with some custom key assignments
+A basic tmux config with some custom key assignments.
 
 ### vim
 
