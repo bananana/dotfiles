@@ -14,13 +14,6 @@ alias ll='ls -alFh'
 alias la='ls -Ah'
 alias l='ls -CFh'
 
-# directory navigation
-alias .='cd ../'
-alias ..='cd ../../'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../../'
-
 # Show open ports
 alias ports='netstat -tulanp'
 
