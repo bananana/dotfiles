@@ -28,7 +28,7 @@ shopt -s checkwinsize
 shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -56,21 +56,27 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# set some color variables to makes things easier on the eyes
+c_white_bold="\[\e[1;37m\]"
+c_blue_bold="\[\e[1;34m\]"
+c_red_bold="\[\e[1;31m\]"
+c_reset="\[\e[0m\]"
+
+# display root's username in red
+if [ $USER = root ]; then
+    user_color_prompt="${c_red_bold}\u${c_white_bold}"
+else
+    user_color_prompt="\u"
+fi
+
+# Two line fancy prompt that inserts a newline before every
+# command to visually separate them.
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="${debian_chroot:+($debian_chroot)}\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_white_bold}]\n${c_white_bold}└──╼${c_reset} "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
-
-# new two line color prompt showing active directory
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\n\[\033[1;37m\]\342\224\214\342\224\200[\u@\h]\342\224\200[\[\033[1;34m\]\w\[\033[1;37m\]]\n\[\033[1;37m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]"
-    ;;
-*)
-    ;;
-esac
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -89,4 +95,10 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+# Functions defintions
+# Add your functions into ~/.bash_functions
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
 fi
