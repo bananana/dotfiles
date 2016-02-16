@@ -86,6 +86,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Functions.
+# Use a different file for functions
+if [ -f "${HOME}/.bash_functions" ]; then
+  source "${HOME}/.bash_functions"
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
