@@ -32,11 +32,11 @@ stow vim
 
 ### bash
 
-A fairly standard bash config, includes a custom PS1 prompt and a few aliases.
+A fairly standard bash config, includes a custom PS1 prompt and a few aliases. Functions, aliases and logout are broken out into separate files. 
 
 ### bash-eOS
 
-Slightly differnt bash config that includes customizations for pantheon-terminal (a terminal for Elementary OS).
+Slightly different bash config that includes customizations for pantheon-terminal (a terminal for Elementary OS).
 
 ### conky-crunchbang
 
@@ -44,8 +44,8 @@ Conky config inspired by original crunchbang.
 
 ### tmux
 
-A basic tmux config with some custom key assignments.
+A basic tmux config with some custom key assignments. Alt+a is now the prefix, Prefix+\ is horizontal split, Prefix+| is vertical split.
 
 ### vim
 
-My vim config.
+My vim config. Comes with emmet and nerdtree plugins. Vim airline plugin is there but I'm still tweaking it, so it's disabled. There are also several custom shortuct keys: Ctrl+(h|j|k|l) now moves between panes, Shift+(h|j|k|l) resizes panes, Ctrl+n toggles nerdtree.

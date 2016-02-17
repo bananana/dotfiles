@@ -4,9 +4,11 @@ set t_Co=256
 " Set theme
 colo pablo
 
-" Pathogen and plugins
+" Disable vim-airline, comment these two lines out if you want it.
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, 'vim-airline')
+
+" Pathogen and plugins
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
