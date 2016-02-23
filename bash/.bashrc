@@ -77,10 +77,10 @@ fi
 
 # Display python virtual environment if it's active
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-if [ -z $VIRTUAL_ENV ]; then
-    python_virtualenv=""
+if [[ -n $VIRTUAL_ENV ]]; then
+    python_virtualenv="${c_yellow_bold}─[${VIRTUAL_ENV##*/}]"
 else
-    python_virtualenv="${c_yellow_bold}─[${python_virtualenv##*/}]"
+    python_virtualenv=""
 fi
 
 # Two line fancy prompt that inserts a newline before every
