@@ -62,6 +62,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set some color variables to makes things easier on the eyes
+c_yellow_bold="\[\e[1;33m\]"
 c_white_bold="\[\e[1;37m\]"
 c_blue_bold="\[\e[1;34m\]"
 c_red_bold="\[\e[1;31m\]"
@@ -74,10 +75,18 @@ else
     user_color_prompt="\u"
 fi
 
+# Display python virtual environment if it's active
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+if [ -z $VIRTUAL_ENV ]; then
+    python_virtualenv=""
+else
+    python_virtualenv="${c_yellow_bold}─[${python_virtualenv##*/}]"
+fi
+
 # Two line fancy prompt that inserts a newline before every
 # command to visually separate things.
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_white_bold}]\n${c_white_bold}└──╼${c_reset} "
+    PS1="${debian_chroot:+($debian_chroot)}\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_white_bold}]${python_virtualenv}\n${c_white_bold}└──╼${c_reset} "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
