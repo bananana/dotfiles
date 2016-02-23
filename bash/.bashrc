@@ -76,17 +76,17 @@ else
 fi
 
 # Display python virtual environment if it's active
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-if [[ -n $VIRTUAL_ENV ]]; then
-    python_virtualenv="${c_yellow_bold}─[${VIRTUAL_ENV##*/}]"
-else
-    python_virtualenv=""
-fi
+#export VIRTUAL_ENV_DISABLE_PROMPT=1
+#if [[ -n $VIRTUAL_ENV ]]; then
+#    python_virtualenv="${c_yellow_bold}─[${VIRTUAL_ENV##*/}]"
+#else
+#    python_virtualenv=""
+#fi
 
 # Two line fancy prompt that inserts a newline before every
 # command to visually separate things.
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_white_bold}]${python_virtualenv}\n${c_white_bold}└──╼${c_reset} "
+    PS1="${debian_chroot:+($debian_chroot)}\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_white_bold}]\n${c_white_bold}└──╼${c_reset} "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
