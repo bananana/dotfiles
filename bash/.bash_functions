@@ -48,3 +48,13 @@ cd_func ()
 }
 alias cd=cd_func
 
+# This function is used in PS1 prompt to notify user when python virtualenv
+# is activated.
+function python_virtualenv(){
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        venv="${VIRTUAL_ENV##*/}"
+    else
+        venv=""
+    fi
+    [[ -n "$venv" ]] && printf "─[\e[1;33m$venv\e[1;37m]"
+}
