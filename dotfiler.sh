@@ -7,6 +7,7 @@
 #               from a dotfiles directory to home directory. Basically functions
 #               the same way as GNU Stow, but without having to install anything.
 #
+# TODO: make sure vim directories are linked correctly
 
 # Set PATH environment variable
 export PATH="/usr/local/bin:/usr/bin:/bin"

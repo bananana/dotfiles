@@ -3,10 +3,10 @@
 # for examples
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+#case $- in
+#    *i*) ;;
+#      *) return;;
+#esac
 
 # If tmux is present, execute it when the shell starts
 if command -v tmux>/dev/null; then
@@ -87,7 +87,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set some color variables to makes things easier on the eyes
-c_white_bold="\[\e[1;37m\]"
+c_white_bold="\[\e[30m\]"
 c_blue_bold="\[\e[1;34m\]"
 c_red_bold="\[\e[1;31m\]"
 c_reset="\[\e[0m\]"
@@ -105,7 +105,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # Two line fancy prompt that inserts a newline before every
 # command to visually separate things.
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_white_bold}]\$(python_virtualenv)\n${c_white_bold}└──╼${c_reset} "
+    #PS1="${debian_chroot:+($debian_chroot)}\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_white_bold}]\$(python_virtualenv)\n${c_white_bold}└──╼${c_reset} "
+    PS1="\n${c_white_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_reset}${c_white_bold}]\$(python_virtualenv)\n└──╼${c_reset} "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi

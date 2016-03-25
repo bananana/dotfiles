@@ -2,7 +2,7 @@
 set t_Co=256 
 
 " Set theme
-colo pablo
+"colo pablo
 
 " Disable vim-airline, comment these two lines out if you want it.
 let g:pathogen_disabled = []
