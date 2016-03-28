@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 #
 # Version.....: 0.1.0
 # Author......: Pavel Mamontov
@@ -7,6 +7,10 @@
 #               from a dotfiles directory to home directory. Basically functions
 #               the same way as GNU Stow, but without having to install anything.
 #
+
+# Set the -e shell option so the script exits immediately if any command within
+# it exits with a non-zero status.
+set -e
 
 # Set PATH environment variable
 export PATH="/usr/local/bin:/usr/bin:/bin"
