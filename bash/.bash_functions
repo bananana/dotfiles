@@ -56,5 +56,5 @@ function python_virtualenv(){
     else
         venv=""
     fi
-    [[ -n "$venv" ]] && printf "─[\e[1;33m$venv\e[0m\e[30m]"
+    [[ -n "$venv" ]] && printf "─[\e[1;33m$venv\e[0m\e[1m]"
 }

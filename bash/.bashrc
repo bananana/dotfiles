@@ -87,7 +87,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set some color variables to makes things easier on the eyes
-c_white_bold="\[\e[30m\]"
+c_white_bold="\[\e[1m\]"
 c_blue_bold="\[\e[1;34m\]"
 c_red_bold="\[\e[1;31m\]"
 c_reset="\[\e[0m\]"
