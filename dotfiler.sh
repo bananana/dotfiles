@@ -79,7 +79,7 @@ listLong () {
 }
 
 store () {
-    find $(pwd)/$1 -type f -exec ln -s {} $HOME \;
+    find $(pwd)/$1 -maxdepth 1 -name ".*" -exec ln -s {} $HOME \;
 }
 
 delete () {
