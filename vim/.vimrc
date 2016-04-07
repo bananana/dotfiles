@@ -42,6 +42,10 @@ set expandtab
 set autoindent
 set copyindent
 
+" Window splitting
+set splitbelow
+set splitright
+
 " Convenient command to see the difference betweeen the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
