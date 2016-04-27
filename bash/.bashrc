@@ -113,7 +113,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # command to visually separate things.
 if [ "$color_prompt" = yes ]; then
     #PS1="${debian_chroot:+($debian_chroot)}\n${c_bold}┌─[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_bold}]\$(python_virtualenv)\n${c_bold}└──╼${c_reset} "
-    PS1="\n${c_bold}┌─${ssh_color_prompt}[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_reset}${c_bold}]\$(python_virtualenv)\n└──╼${c_reset} "
+    PS1="\n${c_bold}┌─${ssh_color_prompt}\$(python_virtualenv)[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_reset}${c_bold}]\n└──╼${c_reset} "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
