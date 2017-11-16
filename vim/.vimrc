@@ -15,6 +15,12 @@ syntax on
 " Line numbers 
 set number
 
+" Ruler
+set ruler
+
+" Backspace that works with autoindent
+set backspace=indent,eol,start
+
 " Cursor line
 hi CursorLine   cterm=none ctermbg=229 ctermfg=none
 augroup CursorLine
@@ -33,6 +39,12 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+
+" Tab completion to match bash
+set wildmode=longest,list
+
+" Easy expansion of the active file directory
+cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Indentation
 set tabstop=4
