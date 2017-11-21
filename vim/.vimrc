@@ -9,6 +9,13 @@ filetype plugin indent on
 colorscheme lucius
 LuciusWhite
 
+" Status line
+set laststatus=2
+set noshowmode
+let g:lightline = {
+    \ 'colorscheme': 'one',
+    \ }
+
 " Turn syntax highlighting on
 syntax on
 
