@@ -8,3 +8,6 @@
 [submodule "vim/.vim/bundle/vim-lucius"]
 	path = vim/.vim/bundle/vim-lucius
 	url = https://github.com/jonathanfilip/vim-lucius
+[submodule "vim/.vim/bundle/lightline"]
+	path = vim/.vim/bundle/lightline
+	url = https://github.com/itchyny/lightline.vim
