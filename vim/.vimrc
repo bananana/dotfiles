@@ -18,6 +18,7 @@ let g:lightline = {
 
 " Turn syntax highlighting on
 syntax on
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Line numbers 
 set number
