@@ -52,6 +52,7 @@ Examples:
 
 	.dotfiler.sh -s vim
 		Symlink dotfiles located in vim directory into /home/<username>
+```
 
 If you're going to use the vim config, then you have to initialize the various bundles:
 
