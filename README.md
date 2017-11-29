@@ -12,7 +12,7 @@ Clone the repo and setup the dotfiles directory:
     cd .dotfiles
 
 To manage the dotfiles use the builtin `dotfiler.sh` script:
-'''
+```
 	 _       _    __ _ _
   __| | ___ | |_ / _(_| | ___ _ __
  / _` |/ _ \| __| |_| | |/ _ | '__|
