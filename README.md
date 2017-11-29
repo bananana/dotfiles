@@ -107,7 +107,7 @@ Custom key bindings:
 
 |Command               |Description |
 |----------------------|------------|
-|`Alt + a`             |<prefix>    |
+|`Alt + a`             |`<prefix>`  |
 |`<prefix> + \`        |Horizontal split|
 |`<prefix> + |` 	   |Vertical split|
 |`<prefix> + h|j|k|l`  |Switches focus between the splits in given direction|
