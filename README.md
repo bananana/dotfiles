@@ -12,47 +12,47 @@ Clone the repo and setup the dotfiles directory:
     cd .dotfiles
 
 To manage the dotfiles use the builtin `dotfiler.sh` script:
-'''
+```
 		 _       _    __ _ _
 	  __| | ___ | |_ / _(_| | ___ _ __
 	 / _` |/ _ \| __| |_| | |/ _ | '__|
 	| (_| | (_) | |_|  _| | |  __| |
 	 \__,_|\___/ \__|_| |_|_|\___|_|
-'''
 
-	Synopsis:
+		Synopsis:
 
-		.dotfiler.sh is a script used to manage dotfiles from a central location. The dotfiles directory
-		should have subdirectories, corresponding to various applications, containing their respective
-		config files (dotfiles). The script creates symlinks from these dotfiles to your home directory.
-		You can then store the entire dotfiles directory on a VCS or the cloud and deploy it on any
-		machine by simply cloning or copying it and this script.
+			.dotfiler.sh is a script used to manage dotfiles from a central location. The dotfiles directory
+			should have subdirectories, corresponding to various applications, containing their respective
+			config files (dotfiles). The script creates symlinks from these dotfiles to your home directory.
+			You can then store the entire dotfiles directory on a VCS or the cloud and deploy it on any
+			machine by simply cloning or copying it and this script.
 
-	Usage:
+		Usage:
 
-		.dotfiler.sh [ options ] package
+			.dotfiler.sh [ options ] package
 
-	Options:
+		Options:
 
-		-h  Display this help message
+			-h  Display this help message
 
-		-l  List all available packages
+			-l  List all available packages
 
-		-L  List all available packages, including their contents
+			-L  List all available packages, including their contents
 
-		-s package, -c package
-			Create symlinks in /home/pavel for files found in package directory
+			-s package, -c package
+				Create symlinks in /home/pavel for files found in package directory
 
-		-d package
-			Delete symlinks for given package from /home/pavel
+			-d package
+				Delete symlinks for given package from /home/pavel
 
-		-u package
-			Update symlinks for given package
+			-u package
+				Update symlinks for given package
 
-	Examples:
+		Examples:
 
-		.dotfiler.sh -s vim
-			Symlink dotfiles located in vim directory into /home/<username>
+			.dotfiler.sh -s vim
+				Symlink dotfiles located in vim directory into /home/<username>
+```
 
 If you're going to use the vim config, then you have to initialize the various bundles:
 
