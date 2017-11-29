@@ -7,7 +7,6 @@
 #               from a dotfiles directory to home directory. Basically functions
 #               the same way as GNU Stow, but without having to install anything.
 #
-# TODO: make sure vim directories are linked correctly
 
 # Set the -e shell option so the script exits immediately if any command within
 # it exits with a non-zero status.
@@ -76,7 +75,8 @@ list () {
 
 listLong () {
     if command -v tree>/dev/null; then
-        find . -maxdepth 1 -type d -not \( -path '*git*' -o -path '.' \) -exec tree --noreport -a -L 1 {} \;
+        find . -maxdepth 1 -type d -not \( -path '*git*' -o -path '.' \) \
+               -exec tree --noreport -a -L 1 {} \;
     else
         ls -A */
     fi
