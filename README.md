@@ -109,9 +109,9 @@ Custom key bindings:
 |----------------------|------------|
 |`Alt + a`             |`<prefix>`  |
 |`<prefix> + \`        |Horizontal split |
-|`<prefix> + |` 	   |Vertical split |
-|`<prefix> + h|j|k|l`  |Switches focus between the splits in given direction |
-|`<prefix> + Ctrl + h|j|k|l` |Resizes the currently active split in givend direction |
+|`<prefix> + \|` 	   |Vertical split |
+|`<prefix> + h\|j\|k\|l`  |Switches focus between the splits in given direction |
+|`<prefix> + Ctrl + h\|j\|k\|l` |Resizes the currently active split in givend direction |
 
 ### vim
 
