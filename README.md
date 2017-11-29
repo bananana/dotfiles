@@ -108,16 +108,17 @@ Custom key bindings:
 |Command               |Description |
 |----------------------|------------|
 |`Alt + a`             |`<prefix>`  |
-|`<prefix> + \`        |Horizontal split|
-|`<prefix> + |` 	   |Vertical split|
-|`<prefix> + h|j|k|l`  |Switches focus between the splits in given direction|
-|`<prefix> + Ctrl + h|j|k|l`|Resizes the currently active split in givend direction|
+|`<prefix> + \`        |Horizontal split |
+|`<prefix> + |` 	   |Vertical split |
+|`<prefix> + h|j|k|l`  |Switches focus between the splits in given direction |
+|`<prefix> + Ctrl + h|j|k|l` |Resizes the currently active split in givend direction |
 
 ### vim
 
 My vim config. Included are [emmet-vim](https://github.com/mattn/emmet-vim), [lightline](https://github.com/itchyny/lightline.vim), [nerdtree](https://github.com/scrooloose/nerdtree) plugins and [lucius](https://github.com/jonathanfilip/vim-lucius) theme. 
 
 There are also several custom shortuct keys: 
+
 |Command             |Description |
 |--------------------|------------|
 |`Ctrl + (h|j|k|l)`  |Move between panes|
