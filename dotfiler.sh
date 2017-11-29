@@ -48,6 +48,8 @@ ${B}Options:${N}
 
     ${B}-L${N}  List all available packages, including their contents 
 
+    ${B}-p${N}  Pull git submodules. Equivalent to \`git submodule update --init\`
+
     ${B}-s${N} ${U}package${RU}, ${B}-c${N} ${U}package${RU}
         Create symlinks in $HOME for files found in ${U}package${RU} directory 
 
@@ -92,9 +94,12 @@ delete () {
         [ -L $HOME/$lnk ] && rm -f $HOME/$lnk
     done
 }
+pullSubmodules () {
+	git submodule update --init
+}
 
 # Process command line options
-while getopts :hlLs:c:d:u: opt; do
+while getopts :hlLps:c:d:u: opt; do
     case $opt in
         h) 
             usage 
@@ -105,6 +110,9 @@ while getopts :hlLs:c:d:u: opt; do
         L)
             listLong
         ;;
+		p)
+			pullSubmodules
+		;;
         s|c) 
             store $OPTARG 
         ;;
