@@ -97,7 +97,7 @@ Helpful bash functions:
 |Function           |Usage |Description |
 |-------------------|------|------------|
 |`cd_func`          |`cd --` |Show your cd history |
-|`testport`         |`testPort <servername || ip> <port> <protocol>` |Quickly check if a port is open |
+|`testport`         |`testPort <servername \|\| ip> <port> <protocol>` |Quickly check if a port is open |
 |`python_virtualenv`|N/A   |Helper function for generating PS1 prompt. |
 
 ### conky
