@@ -23,6 +23,9 @@ alias .....='cd ../../../..'
 # Show open ports
 alias ports='netstat -tulanp'
 
+# Get headers
+alias headers='curl -I'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 if [ -x /usr/bin/notify-send ]; then

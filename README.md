@@ -70,21 +70,23 @@ Which is equivelent to:
 
 A fairly standard bash config, includes a custom PS1 prompt and a few aliases. Functions, aliases and logout are broken out into separate files. Aliases included:
 
-|Command |Alias                 |
-|--------|----------------------|
-|`ls`    |`ls --color=auto`     |
-|`dir`   |`dir --color=auto`    |
-|`vdir`  |`vdir --color=auto`   |
-|`grep`  |`grep --color=auto`   |
-|`fgrep` |`fgrep --color=auto`  |
-|`egrep` |`egrep --color=auto`  |
-|`ll`    |`ls -alFh`            |
-|`la`    |`ls -Ah`              |
-|`l`     |`ls -CFh`             |
-|`..`    |`cd ..`               |
-|`...`   |`cd ../..`            |
-|`....`  |`cd ../../..`         |
-|`.....` |`cd ../../../..`      |
+|Command  |Alias                 |
+|---------|----------------------|
+|`ls`     |`ls --color=auto`     |
+|`dir`    |`dir --color=auto`    |
+|`vdir`   |`vdir --color=auto`   |
+|`grep`   |`grep --color=auto`   |
+|`fgrep`  |`fgrep --color=auto`  |
+|`egrep`  |`egrep --color=auto`  |
+|`ll`     |`ls -alFh`            |
+|`la`     |`ls -Ah`              |
+|`l`      |`ls -CFh`             |
+|`..`     |`cd ..`               |
+|`...`    |`cd ../..`            |
+|`....`   |`cd ../../..`         |
+|`.....`  |`cd ../../../..`      |
+|`ports`  |`netstat -tulanp`     |
+|`headers`|`curl -I`             |
 
 `alert` alias is an easy way to call `notify-send` for long running commands. It will show the command in your notifications when it completes. For example:
 
@@ -92,10 +94,11 @@ A fairly standard bash config, includes a custom PS1 prompt and a few aliases. F
 
 Helpful bash functions:
 
-|Command            |Description                                                |
-|-------------------|-----------------------------------------------------------|
-|`cd --`            |Show your cd history                                       |
-|`python_virtualenv`|Helper function for generating PS1 prompt.                 |
+|Function           |Usage |Description |
+|-------------------|------|------------|
+|`cd_func`          |`cd --` |Show your cd history |
+|`testport`         |`testPort <servername || ip> <port> <protocol>` |Quickly check if a port is open |
+|`python_virtualenv`|N/A   |Helper function for generating PS1 prompt. |
 
 ### conky
 

@@ -48,22 +48,12 @@ cd_func ()
 }
 alias cd=cd_func
 
-# Quickly get header from http server
-# Usage: headers <servername || ip> <port>
-headers() {
-    server=$1; port=${2:-80}
-    exec 5<> /dev/tcp/$server/$port
-    echo -e "HEAD / HTTP/1.0\nHost: ${server}\n\n" >&5;
-    cat 0<&5;
-    exec 5>&-
-}
-
 # Quickly check if a port is open (alternative to netcat or telnet)
-# Usage: testPort <servername || ip> <port> <protocol>
-testPort() {
+# Usage: testport <servername || ip> <port> <protocol>
+testport() {
     server=$1; port=$2; proto=${3:-tcp}
-    exec 5<>/dev/$proto/$server/$port
-    (( $? == 0 )) && exec 5<&-
+    exec 6<>/dev/$proto/$server/$port 
+    (( $? == 0 )) && exec 6<&- && exec 6>&-
 }
 
 # This function is used in PS1 prompt to notify user when python virtualenv
