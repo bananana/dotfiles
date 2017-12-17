@@ -84,3 +84,6 @@ map <silent> <S-j> :resize -5<CR>
 map <silent> <S-k> :resize +5<CR>
 map <silent> <S-h> :vertical resize -5<CR>
 map <silent> <S-l> :vertical resize +5<CR>
+
+" Use F5 to toggle paste mode
+set pastetoggle=<f5>
