@@ -133,3 +133,4 @@ There are also several custom shortuct keys:
 |`Ctrl + (h\|j\|k\|l)`  |Move between panes|
 |`Shift + (h\|j\|k\|l)` |Resizes panes| 
 |`Ctrl + n`          |Toggles nerdtree|
+|`F5`                |Toggles paste mode |
