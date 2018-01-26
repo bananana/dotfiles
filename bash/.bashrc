@@ -80,11 +80,11 @@ shopt -s globstar
 # PROMPT
 # Use color prompt if using xterm and xterm-color is enabled. 
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-*color) color_prompt=yes;;
 esac
 
 # Force color prompt for all terminal emulators, unless tput says the
-# terminal can not do colors.
+# terminal can not do colors. Uncomment line below to stop this behaviour.
 force_color_prompt=yes
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -98,38 +98,48 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set some color variables to makes things easier on the eyes.
-c_bold="\[\e[1m\]"
-c_blue_bold="\[\e[1;34m\]"
-c_red_bold="\[\e[1;31m\]"
-c_reset="\[\e[0m\]"
+c_r="\[\e[0m\]"     # Reset all styling
+c_b="\[\e[1m\]"     # Standard bold
+c_rb="\[\e[31m\]" # Red bold
+c_bb="\[\e[1;34m\]" # Blue bold
+c_p="\[\e[35m\]"    # Purple
 
-# Display root's username in red.
-#if [ $USER = root ]; then
-#    user_color_prompt="${c_red_bold}\u${c_bold}"
-#else
-#    user_color_prompt="\u"
-#fi
-
-# PS1 when using ssh
+# Show a notice when connected through ssh
 if [ $( echo $SSH_CLIENT | wc -c) -gt 1 ]; then
-    ssh_color_prompt="[${c_red_bold}ssh${c_reset}${c_bold}]─"
+    p_ssh="[${c_rb}ssh${c_r}${c_b}]─"
 else
-    ssh_color_prompt=""
+    p_ssh=""
 fi
 
-# Disable default python virtual environment notification
+# User name display, red if root.
+if [ $USER = root ]; then
+    p_user="${c_rb}\u${c_r}${c_b}"
+else
+    p_user="\u"
+fi
+
+# Host
+p_host="\h"
+
+# User + host
+p_user_host="[${p_user}@${p_host}]"
+
+# Working directory
+p_wd="[${c_bb}\w${c_r}${c_b}]"
+
+# Disable default python virtual environment notification. Use the one
+# defined in .bash_functions called python_virtualenv()
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Two line fancy prompt that inserts a newline before every
 # command to visually separate things.
 if [ "$color_prompt" = yes ]; then
     if [ $(uname -s) == "Darwin" ]; then
-        PS1="\n┌─${ssh_color_prompt}\$(python_virtualenv)[${c_bold}${user_color_prompt}@\h${c_reset}]─[${c_blue_bold}\w${c_reset}]\n└──╼${c_reset} "
+        PS1="\n┌─${p_ssh}\$(python_virtualenv)[${c_b}${p_user}@\h${c_r}]─[${c_bb}\w${c_r}]\n└──╼${c_r} "
     else
-        PS1="\n${c_bold}┌─${ssh_color_prompt}\$(python_virtualenv)[${user_color_prompt}@\h]─[${c_blue_bold}\w${c_reset}${c_bold}]\n└──╼${c_reset} "
+        PS1="\n${c_b}┌─${p_ssh}\$(python_virtualenv)${p_user_host}─${p_wd}\n└──╼${c_r} "
     fi
 else
-    #PS1="\n┌─${ssh_color_prompt}\$(python_virtualenv)"
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1="\n┌─[\u@\h]─[\w]\n└──╼ "
 fi
 unset color_prompt force_color_prompt
