@@ -1,6 +1,9 @@
 " Set terminal to 256 color xterm
 set t_Co=256 
 
+" Explicitly set shell to bash
+let g:is_bash = 1
+
 " Pathogen and plugins
 execute pathogen#infect()
 filetype plugin indent on
