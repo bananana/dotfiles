@@ -26,28 +26,20 @@ c_r="\[\e[31m\]"    # Red
 c_br="\[\e[1;31m\]" # Bold red
 c_bb="\[\e[1;34m\]" # Bold blue
 c_p="\[\e[35m\]"    # Magenta
-c_rst_sp=$c_rst     # Special reset
+c_o_bld=            # Optional bold
+c_o_bld2=           # Optional bold for printf
 
-# Set heavy_color_prompt=true to use bold box drawing characters for maximum 
-# contrast between the prompt and command/output. If for some reason you don't
-# want the heavy prompt, just set it to false, which will revert to normal font
-# weight.
-# Note: Mac OSX doesn't display bold box drawing characters correctly in 
+# Set heavy_color_prompt to use bold box drawing characters for maximum contrast
+# between the prompt and command/output. If for some reason you don't want the 
+# heavy prompt, just set it to false, which will revert to normal font weight.
+# **Note:** Mac OSX doesn't display bold box drawing characters correctly in 
 # Terminal.app, so it has to use normal font weight.
-heavy_color_prompt=true
-if [[ "$heavy_color_prompt" == true && $(uname -s) == "Darwin" ]]; then
-    heavy_color_prompt=false
-elif [ "$heavy_color_prompt" == true ]; then
-    c_rst_sp=$c_bld
-fi
-
-# Show a notice when connected through ssh. Set to style1, style2 or both.
-p_ssh_style1=true   # Add a red [ssh] at the beginning of prompt.
-p_ssh_style2=false  # Make hostname red
-if [[ $( echo $SSH_CLIENT | wc -c) -gt 1 && "$p_ssh_style1" = true ]]; then
-    p_ssh="[${c_r}ssh${c_rst}]─"
-else
-    p_ssh=""
+heavy_color_prompt=yes
+if [[ -n "$heavy_color_prompt" && $(uname -s) == "Darwin" ]]; then
+    heavy_color_prompt=
+elif [ -n "$heavy_color_prompt" ]; then
+    c_o_bld=$c_bld
+    c_o_bld2="\e[1m"
 fi
 
 # User name display, red if root.
@@ -57,8 +49,8 @@ else
     p_user="${c_bld}\u${c_rst}"
 fi
 
-# Hostname display, red if using ssh and p_ssh_style2 is set to yes.
-if [ "$p_ssh_style2" = yes ]; then
+# Hostname display, red if using ssh and p_ssh_style2 is set.
+if [ -n "$p_ssh_style2" ]; then
     p_host="${c_br}\h${c_rst}"
 else
     p_host="${c_bld}\h${c_rst}"
@@ -69,6 +61,15 @@ p_user_host="${p_user}@${p_host}"
 
 # Working directory
 p_wd="${c_bb}\w${c_rst}"
+
+# Show a notice when connected through ssh. Set to style1, style2 or both.
+p_ssh_style1=yes   # Add a red [ssh] at the beginning of prompt.
+p_ssh_style2=      # Make hostname red
+if [[ $( echo $SSH_CLIENT | wc -c) -gt 1 && -n "$p_ssh_style1" ]]; then
+    p_ssh="<${c_br}ssh${c_rst}${c_o_bld}>"
+else
+    p_ssh=
+fi
 
 # Disable default python virtual environment notification.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -81,19 +82,24 @@ function python_virtualenv() {
     else
         venv=""
     fi
-    [[ -n "$venv" ]] && printf "─[\e[35m$venv\e[0m]"
+    [[ -n "$venv" ]] && printf "<\e[1;35m$venv\e[0m${c_o_bld2}>"
 }
 
 # Two line prompt that inserts a newline at the beginning of PS1 to visually 
 # separate commands.
-if [[ "$color_prompt" = yes && "$heavy_color_prompt" = true ]]; then
+if [[ -n "$color_prompt" && -n "$heavy_color_prompt" ]]; then
     # Color + bold box drawing characters
-    PS1="\n${c_bld}┌─${p_ssh}\$(python_virtualenv)${p_user_host}─${p_wd}\n└──╼${c_rst} "
-elif [[ "$color_prompt" = yes && "$heavy_color_prompt" = false ]]; then
+    PS1="\n${c_bld}┌─[${p_user_host}${c_bld}]─[${p_wd}${c_bld}]\n"
+    PS1=$PS1"└─${p_ssh}\$(python_virtualenv)─╼${c_rst} "
+elif [[ -n "$color_prompt" && -n "$heavy_color_prompt" ]]; then
     # Color + normal weight box drawing characters
-    PS1="\n┌─${p_ssh}[${p_user_host}]─[${p_wd}]\$(python_virtualenv)\n└──╼ "
+    PS1="\n┌─[${p_user_host}]─[${p_wd}]\n└─${p_ssh}\$(python_virtualenv)─╼ "
 else
     # Monochrome
     PS1="\n┌─[\u@\h]─[\w]\n└──╼ "
 fi
-unset color_prompt force_color_prompt heavy_color_prompt 
+
+# Unset all global variables so they don't pollute the shell
+unset color_prompt force_color_prompt heavy_color_prompt c_rst c_bld c_r c_br \
+c_br c_bb c_p c_o_bld c_o_bld2 p_user p_host p_user_host p_wd p_ssh_style1 \
+p_ssh_style2 p_ssh
