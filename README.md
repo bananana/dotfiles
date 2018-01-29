@@ -70,27 +70,6 @@ Which is equivelent to:
 
 Bash config including a custom PS1 prompt a few aliases and functions. Functions, aliases, prompt and logout are broken out into separate files. 
 
-**PS1 prompt**
-
-Heavy (default) look:
-<pre>
-<code>
-    <strong>┌─[pmamontov</strong>@<strong>2WHBD92]─[<span style="color:blue;">~/.dotfiles</span>]
-    └──╼</strong>
-</code>
-</pre>
-
-Light look:
-<pre>    
-    ┌─[<strong>pmamontov</strong>@<strong>2WHBD92</strong>]─[<strong style="color:blue;">~/.dotfiles</strong>]<br>
-    └──╼
-</pre>
-
-When connected through ssh:
-
-    ┌─[pmamontov@2WHBD92]─[~/.dotfiles]
-    └─<ssh>─╼ 
-
 **Aliases included**
 
 |Command  |Alias                 |
