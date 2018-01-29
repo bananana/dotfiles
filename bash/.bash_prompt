@@ -91,7 +91,7 @@ if [[ -n "$color_prompt" && -n "$heavy_color_prompt" ]]; then
     # Color + bold box drawing characters
     PS1="\n${c_bld}┌─[${p_user_host}${c_bld}]─[${p_wd}${c_bld}]\n"
     PS1=$PS1"└─${p_ssh}\$(python_virtualenv)─╼${c_rst} "
-elif [[ -n "$color_prompt" && -n "$heavy_color_prompt" ]]; then
+elif [[ -n "$color_prompt" && -z "$heavy_color_prompt" ]]; then
     # Color + normal weight box drawing characters
     PS1="\n┌─[${p_user_host}]─[${p_wd}]\n└─${p_ssh}\$(python_virtualenv)─╼ "
 else
