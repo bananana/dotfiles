@@ -42,18 +42,18 @@ Options:
 	-p  Pull git submodules. Equivalent to `git submodule update --init`  
 
 	-s package, -c package
-		Create symlinks in /home/pavel for files found in package directory
+		Create symlinks in $HOME for files found in package directory
 
 	-d package
-		Delete symlinks for given package from /home/pavel
+		Delete symlinks for given package from $HOME 
 
 	-u package
 		Update symlinks for given package
 
 Examples:
 
-	./dotfiler.sh -s vim
-		Symlink dotfiles located in vim directory into /home/<username>
+	./dotfiler.sh -s bash
+		Symlink dotfiles located in vim directory into $HOME
 ```
 
 If you're going to use the vim config, then you have to initialize the various bundles:
@@ -68,7 +68,28 @@ Which is equivelent to:
 
 ### bash
 
-A fairly standard bash config, includes a custom PS1 prompt and a few aliases. Functions, aliases and logout are broken out into separate files. Aliases included:
+Bash config including a custom PS1 prompt a few aliases and functions. Functions, aliases, prompt and logout are broken out into separate files. 
+
+**PS1 prompt**
+
+Heavy (default) look:
+<pre>
+    <strong>┌─[pmamontov</strong>@<strong>2WHBD92]─[</strong><strong style="color:blue;">~/.dotfiles</strong><strong>]<br>
+    └──╼</strong>
+</pre>
+
+Light look:
+<pre>    
+    ┌─[<strong>pmamontov</strong>@<strong>2WHBD92</strong>]─[<strong style="color:blue;">~/.dotfiles</strong>]<br>
+    └──╼
+</pre>
+
+When connected through ssh:
+
+    ┌─[pmamontov@2WHBD92]─[~/.dotfiles]
+    └─<ssh>─╼ 
+
+**Aliases included**
 
 |Command  |Alias                 |
 |---------|----------------------|
@@ -92,13 +113,13 @@ A fairly standard bash config, includes a custom PS1 prompt and a few aliases. F
 
 	sleep 5; alert 
 
-Helpful bash functions:
+**Helpful bash functions**
 
-|Function           |Usage |Description |
-|-------------------|------|------------|
-|`cd_func`          |`cd --` |Show your cd history |
-|`testport`         |`testPort <servername \|\| ip> <port> <protocol>` |Quickly check if a port is open |
-|`python_virtualenv`|N/A   |Helper function for generating PS1 prompt. |
+|Function   |Usage                                             |Description                     |
+|-----------|--------------------------------------------------|--------------------------------|
+|`cd_func`  |`cd --`                                           |Show your cd history            |
+|`testport` |`testPort <servername \|\| ip> <port> <protocol>` |Quickly check if a port is open |
+|`unpack`   |`unpack <compressed_file>`                        |Uncompress a compressed file    |
 
 ### conky
 
@@ -114,12 +135,12 @@ A basic tmux config with some vim-like custom key assignments. The status line i
 
 Custom key bindings:
 
-|Command               |Description |
-|----------------------|------------|
-|`Alt + a`             |`<prefix>`  |
-|`<prefix> + \`        |Horizontal split |
-|`<prefix> + \|` 	   |Vertical split |
-|`<prefix> + (h\|j\|k\|l)`  |Switches focus between the splits in given direction |
+|Command                          |Description                                            |
+|---------------------------------|-------------------------------------------------------|
+|`Alt + a`                        |`<prefix>` (replaces default, which is `Ctrl + b`)     |
+|`<prefix> + \`                   |Horizontal split                                       |
+|`<prefix> + \|` 	              |Vertical split                                         |
+|`<prefix> + (h\|j\|k\|l)`        |Switches focus between the splits in given direction   |
 |`<prefix> + Ctrl + (h\|j\|k\|l)` |Resizes the currently active split in givend direction |
 
 ### vim
@@ -128,9 +149,9 @@ My vim config. Included are [emmet-vim](https://github.com/mattn/emmet-vim), [li
 
 There are also several custom shortuct keys: 
 
-|Command             |Description |
-|--------------------|------------|
-|`Ctrl + (h\|j\|k\|l)`  |Move between panes|
-|`Shift + (h\|j\|k\|l)` |Resizes panes| 
-|`Ctrl + n`          |Toggles nerdtree|
-|`F5`                |Toggles paste mode |
+|Command                |Description                           |
+|-----------------------|--------------------------------------|
+|`Ctrl + (h\|j\|k\|l)`  |Move between panes in given direction |
+|`Shift + (h\|j\|k\|l)` |Resizes panes in given direction      | 
+|`Ctrl + n`             |Toggles nerdtree                      |
+|`F5`                   |Toggles paste mode                    |
