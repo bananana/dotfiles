@@ -74,8 +74,10 @@ Bash config including a custom PS1 prompt a few aliases and functions. Functions
 
 Heavy (default) look:
 <pre>
-    <strong>┌─[pmamontov</strong>@<strong>2WHBD92]─[</strong><strong style="color:blue;">~/.dotfiles</strong><strong>]<br>
+<code>
+    <strong>┌─[pmamontov</strong>@<strong>2WHBD92]─[</strong><strong style="color:blue;">~/.dotfiles</strong><strong>]
     └──╼</strong>
+</code>
 </pre>
 
 Light look:
