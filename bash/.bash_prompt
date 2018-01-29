@@ -1,0 +1,99 @@
+# vim: set filetype=sh:
+
+# Use color prompt if using xterm and xterm-color is enabled. 
+case "$TERM" in
+    xterm-*color) color_prompt=yes;;
+esac
+
+# Force color prompt for all terminal emulators, unless tput says the terminal 
+# can not do colors. Uncomment force_color_prompt to stop this behaviour.
+force_color_prompt=yes
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
+    else
+    	color_prompt=
+    fi
+fi
+
+# Set some ANSI color variables.
+c_rst="\[\e[0m\]"   # All attributes off
+c_bld="\[\e[1m\]"   # Standard bold
+c_r="\[\e[31m\]"    # Red
+c_br="\[\e[1;31m\]" # Bold red
+c_bb="\[\e[1;34m\]" # Bold blue
+c_p="\[\e[35m\]"    # Magenta
+c_rst_sp=$c_rst     # Special reset
+
+# Set heavy_color_prompt=true to use bold box drawing characters for maximum 
+# contrast between the prompt and command/output. If for some reason you don't
+# want the heavy prompt, just set it to false, which will revert to normal font
+# weight.
+# Note: Mac OSX doesn't display bold box drawing characters correctly in 
+# Terminal.app, so it has to use normal font weight.
+heavy_color_prompt=true
+if [[ "$heavy_color_prompt" == true && $(uname -s) == "Darwin" ]]; then
+    heavy_color_prompt=false
+elif [ "$heavy_color_prompt" == true ]; then
+    c_rst_sp=$c_bld
+fi
+
+# Show a notice when connected through ssh. Set to style1, style2 or both.
+p_ssh_style1=true   # Add a red [ssh] at the beginning of prompt.
+p_ssh_style2=false  # Make hostname red
+if [[ $( echo $SSH_CLIENT | wc -c) -gt 1 && "$p_ssh_style1" = true ]]; then
+    p_ssh="[${c_r}ssh${c_rst}]─"
+else
+    p_ssh=""
+fi
+
+# User name display, red if root.
+if [ $USER = root ]; then
+    p_user="${c_br}\u${c_rst}"
+else
+    p_user="${c_bld}\u${c_rst}"
+fi
+
+# Hostname display, red if using ssh and p_ssh_style2 is set to yes.
+if [ "$p_ssh_style2" = yes ]; then
+    p_host="${c_br}\h${c_rst}"
+else
+    p_host="${c_bld}\h${c_rst}"
+fi
+
+# User @ host
+p_user_host="${p_user}@${p_host}"
+
+# Working directory
+p_wd="${c_bb}\w${c_rst}"
+
+# Disable default python virtual environment notification.
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# This function is used in PS1 prompt to notify user when python virtualenv
+# is activated.
+function python_virtualenv() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        venv="${VIRTUAL_ENV##*/}"
+    else
+        venv=""
+    fi
+    [[ -n "$venv" ]] && printf "─[\e[35m$venv\e[0m]"
+}
+
+# Two line prompt that inserts a newline at the beginning of PS1 to visually 
+# separate commands.
+if [[ "$color_prompt" = yes && "$heavy_color_prompt" = true ]]; then
+    # Color + bold box drawing characters
+    PS1="\n${c_bld}┌─${p_ssh}\$(python_virtualenv)${p_user_host}─${p_wd}\n└──╼${c_rst} "
+elif [[ "$color_prompt" = yes && "$heavy_color_prompt" = false ]]; then
+    # Color + normal weight box drawing characters
+    PS1="\n┌─${p_ssh}[${p_user_host}]─[${p_wd}]\$(python_virtualenv)\n└──╼ "
+else
+    # Monochrome
+    PS1="\n┌─[\u@\h]─[\w]\n└──╼ "
+fi
+unset color_prompt force_color_prompt heavy_color_prompt 

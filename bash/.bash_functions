@@ -1,3 +1,5 @@
+# vim: set filetype=sh:
+
 # This function defines a 'cd' replacement function capable of keeping, 
 # displaying and accessing history of visited directories, up to 10 entries.
 cd_func ()
@@ -54,15 +56,4 @@ testport() {
     server=$1; port=$2; proto=${3:-tcp}
     exec 6<>/dev/$proto/$server/$port 
     (( $? == 0 )) && exec 6<&- && exec 6>&-
-}
-
-# This function is used in PS1 prompt to notify user when python virtualenv
-# is activated.
-function python_virtualenv(){
-    if [[ -n "$VIRTUAL_ENV" ]]; then
-        venv="${VIRTUAL_ENV##*/}"
-    else
-        venv=""
-    fi
-    [[ -n "$venv" ]] && printf "[\e[35m$venv\e[0m\e[1m]─"
 }
