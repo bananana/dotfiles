@@ -12,9 +12,9 @@ A collection of my dotfiles.
     * [conky](#configs-conky)
     * [mintty](#configs-mintty)
     * [tmux](#configs-tmux)
-        *[Custom key bindings](#configs-tmux-bindings)
+        * [Custom key bindings](#configs-tmux-bindings)
     * [vim](#configs-vim)
-        *[Custom key bindings](#configs-vim-bindings)
+        * [Custom key bindings](#configs-vim-bindings)
 
 <h2 id="installation">Installation</h2>
 
