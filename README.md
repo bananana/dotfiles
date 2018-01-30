@@ -12,7 +12,9 @@ A collection of my dotfiles.
     * [conky](#configs-conky)
     * [mintty](#configs-mintty)
     * [tmux](#configs-tmux)
+        *[Custom key bindings](#configs-tmux-bindings)
     * [vim](#configs-vim)
+        *[Custom key bindings](#configs-vim-bindings)
 
 <h2 id="installation">Installation</h2>
 
@@ -132,7 +134,7 @@ If on Windows and using Cygwin this configures the mintty terminal to match the 
 
 A basic tmux config with some vim-like custom key assignments. The status line is off by default.
 
-Custom key bindings:
+<h4 id="configs-tmux-bindings">Custom key bindings</h4>
 
 |Command                          |Description                                            |
 |---------------------------------|-------------------------------------------------------|
@@ -148,7 +150,7 @@ Custom key bindings:
 
 My vim config. Included are [emmet-vim](https://github.com/mattn/emmet-vim), [lightline](https://github.com/itchyny/lightline.vim), [nerdtree](https://github.com/scrooloose/nerdtree) plugins and [lucius](https://github.com/jonathanfilip/vim-lucius) theme. 
 
-There are also several custom shortuct keys: 
+<h4 id="configs-vim-bindings">Custom key bindings</h4> 
 
 |Command                |Description                           |
 |-----------------------|--------------------------------------|
