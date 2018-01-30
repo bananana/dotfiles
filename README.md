@@ -7,6 +7,7 @@ A collection of my dotfiles.
 * [Installation](#installation)
 * [Configs](#configs)
     * [bash](#configs-bash)
+        * [Prompt](#configs-bash-prompt)
         * [Aliases](#configs-bash-aliases)
         * [Functions](#configs-bash-functions)
     * [conky](#configs-conky)
@@ -88,10 +89,11 @@ Bash config including a custom PS1 prompt a few aliases and functions. Functions
 
 Two line smart prompt. Features:
 
-* Hightlights root user in red. **Caveat:** the root user needs to source this config. The easiest way to do that is to switch to root user (`su -`), go to dotfiles directory presumably cloned into normal user's directory and run `./dotfiler.sh -s bash`, which will create symlinks to root's home directory.
-* Hightlights hostname in red if logged in through ssh. **Caveat**: this bash config needs to be on the remote host. 
 * Adds a notice if using python virtualenv.
+* Hightlights root user in red. **Caveat:** the root user needs to source this config. The easiest way to do that is to switch to root user (`su -`), go to dotfiles directory (presumably already cloned into normal user's directory) and run `./dotfiler.sh -s bash`, which will create symlinks to root's home directory.
+* Hightlights hostname in red if logged in through ssh. **Caveat**: this bash config needs to be on the remote host. 
 
+Screenshot:
 ![ps1](https://pavelmamontov.com/content/blog/images/ps1_prompt_screenshot.png)
 
 <h4 id="configs-bash-aliases">Aliases</h4>
