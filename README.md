@@ -91,7 +91,7 @@ Two line smart prompt. Features:
 
 * Adds a notice if using python virtualenv.
 * Hightlights root user in red. 
-    - **Caveat:** the root user needs to source this config. The easiest way to achieve that is to switch to root user with `su -p`, which preserves the normal user environment (i.e. it does not set $HOME, $SHELL, $USER and $LOGNAME).
+    - **Caveat:** the root user needs to source this config. The easiest way to do that is to switch to root user with `su -p`, which preserves the normal user environment (i.e. it does not set $HOME, $SHELL, $USER and $LOGNAME).
 * Hightlights hostname in red if logged in through ssh. 
     - **Caveat**: You'll need to source this bash config on remote host either by cloning this repo into it or manually uploading the files. You can also theoretically pass the $PS1 environment variable to remote host with ssh `-t` option, but this feature is often disabled in server configuration by default.
 
