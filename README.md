@@ -94,6 +94,7 @@ Two line smart prompt. Features:
 * Hightlights hostname in red if logged in through ssh. **Caveat**: this bash config needs to be on the remote host. 
 
 Screenshot:
+
 ![ps1](https://pavelmamontov.com/content/blog/images/ps1_prompt_screenshot.png)
 
 <h4 id="configs-bash-aliases">Aliases</h4>
