@@ -2,7 +2,19 @@
 
 A collection of my dotfiles. 
 
-## Installation
+## Table of Contents
+
+* [Installation](#installation)
+* [Configs](#configs)
+    * [bash](#configs-bash)
+        * [Aliases](#configs-bash-aliases)
+        * [Functions](#configs-bash-functions)
+    * [conky](#configs-conky)
+    * [mintty](#configs-mintty)
+    * [tmux](#configs-tmux)
+    * [vim](#configs-vim)
+
+<h2 id="installation">Installation</h2>
 
 Clone the repo and setup the dotfiles directory: 
 
@@ -56,7 +68,7 @@ Examples:
 		Symlink dotfiles located in vim directory into $HOME
 ```
 
-If you're going to use the vim config, then you have to initialize the various bundles:
+If you're going to use the vim config, then you have to initialize the various bundles, which are stored as git submodules:
 
 	./dotfiler.sh -p
 
@@ -64,13 +76,13 @@ Which is equivelent to:
 
     git submodule update --init
 
-## Contents
+<h2 id="configs">Configs</h2>
 
-### bash
+<h3 id="configs-bash">bash</h3>
 
 Bash config including a custom PS1 prompt a few aliases and functions. Functions, aliases, prompt and logout are broken out into separate files. 
 
-**Aliases included**
+<h4 id="configs-bash-aliases">Aliases</h4>
 
 |Command  |Alias                 |
 |---------|----------------------|
@@ -94,7 +106,7 @@ Bash config including a custom PS1 prompt a few aliases and functions. Functions
 
 	sleep 5; alert 
 
-**Helpful bash functions**
+<h4 id="configs-bash-functions">Functions</h4>
 
 |Function   |Usage                                             |Description                     |
 |-----------|--------------------------------------------------|--------------------------------|
@@ -102,15 +114,15 @@ Bash config including a custom PS1 prompt a few aliases and functions. Functions
 |`testport` |`testPort <servername \|\| ip> <port> <protocol>` |Quickly check if a port is open |
 |`unpack`   |`unpack <compressed_file>`                        |Uncompress a compressed file    |
 
-### conky
+<h3 id="configs-conky">conky</h3>
 
 Conky config inspired by original crunchbang.
 
-### mintty
+<h3 id="configs-mintty">mintty</h3>
 
 If on Windows and using Cygwin this configures the mintty terminal to match the overall colorscheme and style.
 
-### tmux
+<h3 id="configs-tmux">tmux</h3>
 
 A basic tmux config with some vim-like custom key assignments. The status line is off by default.
 
@@ -124,7 +136,7 @@ Custom key bindings:
 |`<prefix> + (h\|j\|k\|l)`        |Switches focus between the splits in given direction   |
 |`<prefix> + Ctrl + (h\|j\|k\|l)` |Resizes the currently active split in givend direction |
 
-### vim
+<h3 id="configs-vim">vim</h3>
 
 My vim config. Included are [emmet-vim](https://github.com/mattn/emmet-vim), [lightline](https://github.com/itchyny/lightline.vim), [nerdtree](https://github.com/scrooloose/nerdtree) plugins and [lucius](https://github.com/jonathanfilip/vim-lucius) theme. 
 
