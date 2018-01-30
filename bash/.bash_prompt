@@ -1,6 +1,10 @@
 # vim: set filetype=sh:
 
-# Use color prompt if using xterm and xterm-color is enabled. 
+# **Note:** Hack font is recommended, as it seems to be the best at rendering 
+# box drawing characters required for this custom prompt. 
+# You can find it here https://github.com/source-foundry/Hack
+
+# Use color prompt if xterm-color (or xterm-256color) is enabled. 
 case "$TERM" in
     xterm-*color) color_prompt=yes;;
 esac
@@ -8,11 +12,11 @@ esac
 # Force color prompt for all terminal emulators, unless tput says the terminal 
 # can not do colors. Uncomment force_color_prompt to stop this behaviour.
 force_color_prompt=yes
-if [ -n "$force_color_prompt" ]; then
+if [[ -n "$force_color_prompt" && -z "$color_prompt" ]]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
         # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
+        # (ISO/IEC-6429). Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.
         color_prompt=yes
     else
     	color_prompt=
@@ -23,83 +27,49 @@ fi
 c_rst="\[\e[0m\]"   # All attributes off
 c_bld="\[\e[1m\]"   # Standard bold
 c_r="\[\e[31m\]"    # Red
-c_br="\[\e[1;31m\]" # Bold red
-c_bb="\[\e[1;34m\]" # Bold blue
-c_p="\[\e[35m\]"    # Magenta
-c_o_bld=            # Optional bold
-c_o_bld2=           # Optional bold for printf
+c_b="\[\e[34m\]"    # Blue
 
-# Set heavy_color_prompt to use bold box drawing characters for maximum contrast
-# between the prompt and command/output. If for some reason you don't want the 
-# heavy prompt, just set it to false, which will revert to normal font weight.
-# **Note:** Mac OSX doesn't display bold box drawing characters correctly in 
-# Terminal.app, so it has to use normal font weight.
-heavy_color_prompt=yes
-if [[ -n "$heavy_color_prompt" && $(uname -s) == "Darwin" ]]; then
-    heavy_color_prompt=
-elif [ -n "$heavy_color_prompt" ]; then
-    c_o_bld=$c_bld
-    c_o_bld2="\e[1m"
-fi
-
-# User name display, red if root.
+# Username display, red if root.
 if [ $USER = root ]; then
-    p_user="${c_br}\u${c_rst}"
+    p_u="${c_r}\u${c_rst}${c_bld}"
 else
-    p_user="${c_bld}\u${c_rst}"
+    p_u="\u"
 fi
 
-# Hostname display, red if using ssh and p_ssh_style2 is set.
-if [ -n "$p_ssh_style2" ]; then
-    p_host="${c_br}\h${c_rst}"
+# Hostname display, red if using ssh.
+if [ $( echo $SSH_CLIENT | wc -c) -gt 1 ]; then
+    p_h="${c_r}\h${c_rst}${c_bld}"
 else
-    p_host="${c_bld}\h${c_rst}"
+    p_h="\h"
 fi
 
-# User @ host
-p_user_host="${p_user}@${p_host}"
+# Combine user and host to get [user@host]
+p_uh="[${p_u}@${p_h}]─"
 
 # Working directory
-p_wd="${c_bb}\w${c_rst}"
-
-# Show a notice when connected through ssh. Set to style1, style2 or both.
-p_ssh_style1=yes   # Add a red [ssh] at the beginning of prompt.
-p_ssh_style2=      # Make hostname red
-if [[ $( echo $SSH_CLIENT | wc -c) -gt 1 && -n "$p_ssh_style1" ]]; then
-    p_ssh="<${c_br}ssh${c_rst}${c_o_bld}>"
-else
-    p_ssh=
-fi
+p_wd="[${c_b}\w${c_rst}${c_bld}]"
 
 # Disable default python virtual environment notification.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # This function is used in PS1 prompt to notify user when python virtualenv
 # is activated.
-function python_virtualenv() {
-    if [[ -n "$VIRTUAL_ENV" ]]; then
+function python_venv() {
+    if [ -n "$VIRTUAL_ENV" ]; then
         venv="${VIRTUAL_ENV##*/}"
     else
         venv=""
     fi
-    [[ -n "$venv" ]] && printf "<\e[1;35m$venv\e[0m${c_o_bld2}>"
+    [ -n "$venv" ] && printf "─[\e[1;35m$venv\e[0m\e[1m]"
 }
 
 # Two line prompt that inserts a newline at the beginning of PS1 to visually 
 # separate commands.
-if [[ -n "$color_prompt" && -n "$heavy_color_prompt" ]]; then
-    # Color + bold box drawing characters
-    PS1="\n${c_bld}┌─[${p_user_host}${c_bld}]─[${p_wd}${c_bld}]\n"
-    PS1=$PS1"└─${p_ssh}\$(python_virtualenv)─╼${c_rst} "
-elif [[ -n "$color_prompt" && -z "$heavy_color_prompt" ]]; then
-    # Color + normal weight box drawing characters
-    PS1="\n┌─[${p_user_host}]─[${p_wd}]\n└─${p_ssh}\$(python_virtualenv)─╼ "
+if [ -n "$color_prompt" ]; then
+    PS1="\n${c_bld}┌─${p_uh}${p_wd}\$(python_venv)\n${c_bld}└──╼${c_rst} "
 else
-    # Monochrome
     PS1="\n┌─[\u@\h]─[\w]\n└──╼ "
 fi
 
 # Unset all global variables so they don't pollute the shell
-unset color_prompt force_color_prompt heavy_color_prompt c_rst c_bld c_r c_br \
-c_br c_bb c_p c_o_bld c_o_bld2 p_user p_host p_user_host p_wd p_ssh_style1 \
-p_ssh_style2 p_ssh
+unset color_prompt force_color_prompt c_rst c_bld c_r p_u p_h p_uh p_wd 
