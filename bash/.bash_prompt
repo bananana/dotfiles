@@ -4,13 +4,13 @@
 # box drawing characters required for this custom prompt. 
 # You can find it here https://github.com/source-foundry/Hack
 
-# Use color prompt if xterm-color (or xterm-256color) is enabled. 
+# Use color prompt if xterm-color (or xterm-256color) is the terminal emulator. 
 case "$TERM" in
     xterm-*color) color_prompt=yes;;
 esac
 
 # Force color prompt for all terminal emulators, unless tput says the terminal 
-# can not do colors. Uncomment force_color_prompt to stop this behaviour.
+# can't do colors. Uncomment force_color_prompt to stop this behaviour.
 force_color_prompt=yes
 if [[ -n "$force_color_prompt" && -z "$color_prompt" ]]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then

@@ -20,12 +20,12 @@ A collection of my dotfiles.
 
 Clone the repo and setup the dotfiles directory: 
 
-    cd
+    cd ~
     git clone https://github.com/bananana/dotifles
     mv dotfiles/ .dotfiles/
     cd .dotfiles
 
-To manage the dotfiles use the builtin `dotfiler.sh` script:
+To manage the dotfiles use the included `dotfiler.sh` script. Technically you can use [GNU Stow](https://www.gnu.org/software/stow/) instead, but I find it lacking and not available on certain platforms. Below is the `dotfiler.sh` help message: 
 ```
      _       _    __ _ _
   __| | ___ | |_ / _(_| | ___ _ __
@@ -70,7 +70,7 @@ Examples:
 		Symlink dotfiles located in vim directory into $HOME
 ```
 
-If you're going to use the vim config, then you have to initialize the various bundles, which are stored as git submodules:
+**Note:** If you're going to use the vim config, then you have to initialize the various bundles, which are stored as git submodules:
 
 	./dotfiler.sh -p
 
@@ -83,6 +83,16 @@ Which is equivelent to:
 <h3 id="configs-bash">bash</h3>
 
 Bash config including a custom PS1 prompt a few aliases and functions. Functions, aliases, prompt and logout are broken out into separate files. 
+
+<h4 id="configs-bash-prompt">Prompt</h4>
+
+Two line smart prompt. Features:
+
+* Hightlights root user in red. **Caveat:** the root user needs to source this config. The easiest way to do that is to switch to root user (`su -`), go to dotfiles directory presumably cloned into normal user's directory and run `./dotfiler.sh -s bash`, which will create symlinks to root's home directory.
+* Hightlights hostname in red if logged in through ssh. **Caveat**: this bash config needs to be on the remote host. 
+* Adds a notice if using python virtualenv.
+
+![ps1](https://pavelmamontov.com/content/blog/images/ps1_prompt_screenshot.png)
 
 <h4 id="configs-bash-aliases">Aliases</h4>
 
@@ -132,7 +142,7 @@ If on Windows and using Cygwin this configures the mintty terminal to match the 
 
 <h3 id="configs-tmux">tmux</h3>
 
-A basic tmux config with some vim-like custom key assignments. The status line is off by default.
+A basic tmux config with some vim-like custom key assignments. The status line is off by default, I think it's redundant and just takes up space. If you need a list of available windows do `<prefix> + w`.
 
 <h4 id="configs-tmux-bindings">Custom key bindings</h4>
 
