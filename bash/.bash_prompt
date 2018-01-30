@@ -30,7 +30,7 @@ c_r="\[\e[31m\]"    # Red
 c_b="\[\e[34m\]"    # Blue
 
 # Username display, red if root.
-if [ $USER = root ]; then
+if [ $(whoami) == "root" ]; then
     p_u="${c_r}\u${c_rst}${c_bld}"
 else
     p_u="\u"

@@ -91,9 +91,9 @@ Two line smart prompt. Features:
 
 * Adds a notice if using python virtualenv.
 * Hightlights root user in red. 
-    - **Caveat:** the root user needs to source this config. The easiest way to do that is to switch to root user (`su -`), go to dotfiles directory (presumably already cloned into normal user's directory) and run `./dotfiler.sh -s bash` from there, which will create symlinks to root's home directory.
+    - **Caveat:** the root user needs to source this config. The easiest way to achieve that is to switch to root user with `su -p`, which preserves the normal user environment (i.e. it does not set $HOME, $SHELL, $USER and $LOGNAME).
 * Hightlights hostname in red if logged in through ssh. 
-    - **Caveat**: this bash config needs to be on the remote host. 
+    - **Caveat**: You'll need to source this bash config on remote host either by cloning this repo into it or manually uploading the files. You can also theoretically pass the $PS1 environment variable to remote host with ssh `-t` option, but this feature is often disabled in server configuration by default.
 
 Screenshot:
 
@@ -167,9 +167,10 @@ My vim config. Included are [emmet-vim](https://github.com/mattn/emmet-vim), [li
 
 <h4 id="configs-vim-bindings">Custom key bindings</h4> 
 
-|Command                |Description                           |
-|-----------------------|--------------------------------------|
-|`Ctrl + (h\|j\|k\|l)`  |Move between panes in given direction |
-|`Shift + (h\|j\|k\|l)` |Resizes panes in given direction      | 
-|`Ctrl + n`             |Toggles nerdtree                      |
-|`F5`                   |Toggles paste mode                    |
+|Command                |Description                                       |
+|-----------------------|--------------------------------------------------|
+|`Ctrl + (h\|j\|k\|l)`  |Move between panes in given direction             |
+|`Shift + (h\|j\|k\|l)` |Resizes panes in given direction                  | 
+|`Ctrl + n`             |Toggles nerdtree                                  |
+|`F5`                   |Toggles paste mode                                |
+|`Space`                |Removes search highlighting. Equivalent to `:noh` |
