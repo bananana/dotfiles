@@ -10,7 +10,7 @@ case "$TERM" in
 esac
 
 # Force color prompt for all terminal emulators, unless tput says the terminal 
-# can't do colors. Uncomment force_color_prompt to stop this behaviour.
+# can't do colors. Comment out `force_color_prompt` to stop this behaviour.
 force_color_prompt=yes
 if [[ -n "$force_color_prompt" && -z "$color_prompt" ]]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
