@@ -5,7 +5,7 @@
 # License.....: MIT (See LICENSE.md)
 # Description.: This is a script used to manage dotfiles. It creates symlinks 
 #               from a dotfiles directory to home directory. Basically functions
-#               the same way as GNU Stow, but without having to install anything.
+#               in a similar way to GNU Stow, but without having to install anything.
 #
 
 # Set the -e shell option so the script exits immediately if any command within
@@ -30,11 +30,12 @@ cat << EOF
 
 ${B}Synopsis:${N}
 
-    ${B}$0${N} is a script used to manage dotfiles from a central location. The dotfiles directory 
-    should have subdirectories, corresponding to various applications, containing their respective
-    config files (dotfiles). The script creates symlinks from these dotfiles to your home directory.
-    You can then store the entire dotfiles directory on a VCS or the cloud and deploy it on any
-    machine by simply cloning or copying it and this script. 
+    ${B}$0${N} is a script used to manage dotfiles from a central location. 
+    The dotfiles directory should have subdirectories, corresponding to various 
+    applications, containing their respective config files (dotfiles). 
+    The script creates symlinks from these dotfiles to your home directory. 
+    You can then store the entire dotfiles directory on a VCS or the cloud and 
+    deploy it on any machine by simply cloning or copying it and this script. 
 
 ${B}Usage:${N}
     
@@ -61,7 +62,7 @@ ${B}Options:${N}
 
 ${B}Examples:${N}
 
-    $0 ${B}-s${N} ${U}vim${RU}
+    $0 ${B}-s${N} ${U}bash${RU}
         Symlink dotfiles located in vim directory into $HOME  
 
 EOF
