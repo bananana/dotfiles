@@ -114,13 +114,19 @@ Bash config including a custom PS1 prompt a few aliases and functions. Functions
 |`testport` |`testPort <servername \|\| ip> <port> <protocol>` |Quickly check if a port is open |
 |`unpack`   |`unpack <compressed_file>`                        |Uncompress a compressed file    |
 
+---
+
 <h3 id="configs-conky">conky</h3>
 
 Conky config inspired by original crunchbang.
 
+---
+
 <h3 id="configs-mintty">mintty</h3>
 
 If on Windows and using Cygwin this configures the mintty terminal to match the overall colorscheme and style.
+
+---
 
 <h3 id="configs-tmux">tmux</h3>
 
@@ -135,6 +141,8 @@ Custom key bindings:
 |`<prefix> + \|` 	              |Vertical split                                         |
 |`<prefix> + (h\|j\|k\|l)`        |Switches focus between the splits in given direction   |
 |`<prefix> + Ctrl + (h\|j\|k\|l)` |Resizes the currently active split in givend direction |
+
+---
 
 <h3 id="configs-vim">vim</h3>
 
