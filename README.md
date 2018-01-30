@@ -90,8 +90,10 @@ Bash config including a custom PS1 prompt a few aliases and functions. Functions
 Two line smart prompt. Features:
 
 * Adds a notice if using python virtualenv.
-* Hightlights root user in red. **Caveat:** the root user needs to source this config. The easiest way to do that is to switch to root user (`su -`), go to dotfiles directory (presumably already cloned into normal user's directory) and run `./dotfiler.sh -s bash`, which will create symlinks to root's home directory.
-* Hightlights hostname in red if logged in through ssh. **Caveat**: this bash config needs to be on the remote host. 
+* Hightlights root user in red. 
+    - **Caveat:** the root user needs to source this config. The easiest way to do that is to switch to root user (`su -`), go to dotfiles directory (presumably already cloned into normal user's directory) and run `./dotfiler.sh -s bash` from there, which will create symlinks to root's home directory.
+* Hightlights hostname in red if logged in through ssh. 
+    - **Caveat**: this bash config needs to be on the remote host. 
 
 Screenshot:
 
