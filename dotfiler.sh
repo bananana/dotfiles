@@ -43,22 +43,23 @@ ${B}Usage:${N}
 
 ${B}Options:${N}
 
-    ${B}-h${N}  Display this help message
+    ${B}-h${N}, ${B}--help${N}
+        Display this help message
 
-    ${B}-l${N}  List all available packages 
+    ${B}-l${N}, ${B}--list${N}
+        List all available packages 
 
-    ${B}-L${N}  List all available packages, including their contents 
+    ${B}-L${N}, ${B}--list-long${N}
+        List all available packages, including their contents 
 
-    ${B}-p${N}  Pull git submodules. Equivalent to \`git submodule update --init\`
+    ${B}-p${N}, ${B}--pull-submodules${N}
+        Pull git submodules. Equivalent to \`git submodule update --init\`
 
-    ${B}-s${N} ${U}package${RU}, ${B}-c${N} ${U}package${RU}
+    ${B}-s${N} ${U}package${RU}
         Create symlinks in $HOME for files found in ${U}package${RU} directory 
 
     ${B}-d${N} ${U}package${RU}
         Delete symlinks for given ${U}package${RU} from $HOME 
-
-    ${B}-u${N} ${U}package${RU} 
-        Update symlinks for given ${U}package${RU} 
 
 ${B}Examples:${N}
 
@@ -79,20 +80,20 @@ list () {
 listLong () {
     if command -v tree>/dev/null; then
         find . -maxdepth 1 -type d -not \( -path '*git*' -o -path '.' \) \
-               -exec tree --noreport -a -L 1 {} \;
+               -exec tree --noreport -a -L 3 {} \;
     else
         ls -A */
     fi
 }
 
 store () {
-    find $(pwd)/$1 -maxdepth 1 -name ".*" -exec ln -si {} $HOME \;
+    find $(pwd)/$1 -maxdepth 1 -name ".*" -exec ln -siv {} $HOME \;
 }
 
 delete () {
     for lnk in $(find $1 -type f -exec basename {} \;)
     do 
-        [ -L $HOME/$lnk ] && rm -i $HOME/$lnk
+        [ -L $HOME/$lnk ] && rm -iv $HOME/$lnk
     done
 }
 
@@ -100,39 +101,33 @@ pullSubmodules () {
 	git submodule update --init
 }
 
+# Transform long options to short ones
+for arg in "$@"; do
+    shift
+    case "$arg" in
+        "--help"            ) set -- "$@" "-h" ;;
+        "--list"            ) set -- "$@" "-l" ;;
+        "--list-long"       ) set -- "$@" "-L" ;;
+        "--pull-submodules" ) set -- "$@" "-p" ;;
+        "--store"           ) set -- "$@" "-s" ;;
+        "--delete"          ) set -- "$@" "-d" ;;
+        *                   ) set -- "$@" "$arg" ;;
+    esac
+done
+
 # Process command line options
 while getopts :hlLps:c:d:u: opt; do
     case $opt in
-        h) 
-            usage 
-        ;;
-        l)
-            list
-        ;;
-        L)
-            listLong
-        ;;
-		p)
-			pullSubmodules
-		;;
-        s|c) 
-            store $OPTARG 
-        ;;
-        d) 
-            delete $OPTARG
-        ;;
-        u)
-            delete $OPTARG
-            store $OPTARG 
-        ;;
-        ?) 
-            echo "Invalid option: -$OPTARG" >&2
-            exit 1 
-        ;;
-        :) 
-            echo "Option -$OPTARG requires and arguement" >&2
-            exit 1 
-        ;;
+        h ) usage ;;
+        l ) list ;;
+        L ) listLong ;;
+		p ) pullSubmodules ;;
+        s ) store $OPTARG ;;
+        d ) delete $OPTARG ;;
+        \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
+        : ) echo "Option -$OPTARG requires and arguement" >&2; exit 1 ;;
     esac
 done
+
+# Remove options from positional parameters
 shift $((OPTIND - 1))
