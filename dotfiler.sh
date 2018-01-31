@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Version.....: 0.1.0
+# Version.....: 0.1.2
 # Author......: Pavel Mamontov
 # License.....: MIT (See LICENSE.md)
 # Description.: This is a script used to manage dotfiles. It creates symlinks 
@@ -86,15 +86,16 @@ listLong () {
 }
 
 store () {
-    find $(pwd)/$1 -maxdepth 1 -name ".*" -exec ln -s {} $HOME \;
+    find $(pwd)/$1 -maxdepth 1 -name ".*" -exec ln -si {} $HOME \;
 }
 
 delete () {
     for lnk in $(find $1 -type f -exec basename {} \;)
     do 
-        [ -L $HOME/$lnk ] && rm -f $HOME/$lnk
+        [ -L $HOME/$lnk ] && rm -i $HOME/$lnk
     done
 }
+
 pullSubmodules () {
 	git submodule update --init
 }
