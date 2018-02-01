@@ -39,7 +39,7 @@ ${B}Synopsis:${N}
 
 ${B}Usage:${N}
     
-    ${B}$0${N} [ options ] ${U}package${RU}
+    ${B}$0${N} [options] [${U}package${RU}]
 
 ${B}Options:${N}
 
@@ -52,14 +52,15 @@ ${B}Options:${N}
     ${B}-L${N}, ${B}--list-long${N}
         List all available packages, including their contents 
 
-    ${B}-p${N}, ${B}--pull-submodules${N}
-        Pull git submodules. Equivalent to \`git submodule update --init\`
+    ${B}-u${N}, ${B}--update${N}
+        Perform a git pull, update and init any git submodules. Equivalent to:
+        \`git pull; git submodule update --init\`
 
-    ${B}-s${N} ${U}package${RU}
+    ${B}-s${N}, ${B}--symlink${N} ${U}package${RU}
         Create symlinks in $HOME for files found in ${U}package${RU} directory 
 
-    ${B}-d${N} ${U}package${RU}
-        Delete symlinks for given ${U}package${RU} from $HOME 
+    ${B}-r${N}, ${B}--remove-symlinks${N} ${U}package${RU}
+        Remove symlinks for given ${U}package${RU} from $HOME 
 
 ${B}Examples:${N}
 
@@ -86,31 +87,32 @@ listLong () {
     fi
 }
 
-store () {
+symlink () {
     find $(pwd)/$1 -maxdepth 1 -name ".*" -exec ln -siv {} $HOME \;
 }
 
-delete () {
+removeSymlinks () {
     for lnk in $(find $1 -type f -exec basename {} \;)
     do 
         [ -L $HOME/$lnk ] && rm -iv $HOME/$lnk
     done
 }
 
-pullSubmodules () {
-	git submodule update --init
+update () {
+    ( set -x; git pull; git submodule update --init)
 }
 
-# Transform long options to short ones
+# Transform long options to short ones to get around getopts limitation
 for arg in "$@"; do
     shift
     case "$arg" in
         "--help"            ) set -- "$@" "-h" ;;
         "--list"            ) set -- "$@" "-l" ;;
         "--list-long"       ) set -- "$@" "-L" ;;
-        "--pull-submodules" ) set -- "$@" "-p" ;;
-        "--store"           ) set -- "$@" "-s" ;;
-        "--delete"          ) set -- "$@" "-d" ;;
+        "--update"          ) set -- "$@" "-u" ;;
+        "--symlink"         ) set -- "$@" "-s" ;;
+        "--remove-symlinks" ) set -- "$@" "-r" ;;
+        "--"*               ) echo "Invalid option: $arg" >&2; exit 1 ;;
         *                   ) set -- "$@" "$arg" ;;
     esac
 done
@@ -121,9 +123,9 @@ while getopts :hlLps:c:d:u: opt; do
         h ) usage ;;
         l ) list ;;
         L ) listLong ;;
-		p ) pullSubmodules ;;
-        s ) store $OPTARG ;;
-        d ) delete $OPTARG ;;
+		u ) update ;;
+        s ) symlink $OPTARG ;;
+        r ) removeSymlinks $OPTARG ;;
         \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
         : ) echo "Option -$OPTARG requires and arguement" >&2; exit 1 ;;
     esac
