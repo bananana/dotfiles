@@ -3,10 +3,8 @@
 # Version.....: 0.1.2
 # Author......: Pavel Mamontov
 # License.....: MIT (See LICENSE.md)
-# Description.: This is a script used to manage dotfiles. It creates symlinks 
-#               from a dotfiles directory to home directory. Basically functions
-#               in a similar way to GNU Stow, but without having to install anything.
-#
+# Description.: Script used to manage dotfiles. It creates symlinks 
+#               from a dotfiles directory to home directory.
 
 # Set the -e shell option so the script exits immediately if any command within
 # it exits with a non-zero status.
