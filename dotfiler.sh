@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Version.....: 0.1.2
 # Author......: Pavel Mamontov
