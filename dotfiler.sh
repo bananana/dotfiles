@@ -118,7 +118,7 @@ for arg in "$@"; do
 done
 
 # Process command line options
-while getopts :hlLps:c:d:u: opt; do
+while getopts :hlLps:c:d:u opt; do
     case $opt in
         h ) usage ;;
         l ) list ;;
