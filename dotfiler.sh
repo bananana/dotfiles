@@ -28,16 +28,16 @@ cat << EOF
 
 ${B}Synopsis:${N}
 
-    ${B}$0${N} is a script used to manage dotfiles from a central location. 
-    The dotfiles directory should have subdirectories, corresponding to various 
-    applications, containing their respective config files (dotfiles). 
+    ${B}$0${N} is a script to manage dotfiles from a central directory. 
+    The dotfiles directory should have subdirectories, corresponding to various
+    programs, containing their respective config files (dotfiles). 
     The script creates symlinks from these dotfiles to your home directory. 
     You can then store the entire dotfiles directory on a VCS or the cloud and 
-    deploy it on any machine by simply cloning or copying it and this script. 
+    deploy it on any machine by simply cloning or copying it. 
 
 ${B}Usage:${N}
     
-    ${B}$0${N} [options] [${U}package${RU}]
+    ${B}$0${N} [${B}-hlLu${N}] [${B}-s${N} ${U}dir${RU}] [${B}-r${N} ${U}dir${RU}]
 
 ${B}Options:${N}
 
@@ -45,25 +45,25 @@ ${B}Options:${N}
         Display this help message
 
     ${B}-l${N}, ${B}--list${N}
-        List all available packages 
+        List all available config directories 
 
     ${B}-L${N}, ${B}--list-long${N}
-        List all available packages, including their contents 
+        List all available config directories, including their contents 
 
     ${B}-u${N}, ${B}--update${N}
         Perform a git pull, update and init any git submodules. Equivalent to:
         \`git pull; git submodule update --init\`
 
-    ${B}-s${N}, ${B}--symlink${N} ${U}package${RU}
-        Create symlinks in $HOME for files found in ${U}package${RU} directory 
+    ${B}-s${N}, ${B}--symlink${N} ${U}dir${RU}
+        Create symlinks in $HOME for files found in ${U}dir${RU}
 
-    ${B}-r${N}, ${B}--remove-symlinks${N} ${U}package${RU}
-        Remove symlinks for given ${U}package${RU} from $HOME 
+    ${B}-r${N}, ${B}--remove-symlinks${N} ${U}dir${RU}
+        Remove symlinks for given ${U}dir${RU} from $HOME 
 
 ${B}Examples:${N}
 
     $0 ${B}-s${N} ${U}bash${RU}
-        Symlink dotfiles located in vim directory into $HOME  
+        Symlink dotfiles located in bash directory into $HOME  
 
 EOF
 }
@@ -116,7 +116,7 @@ for arg in "$@"; do
 done
 
 # Process command line options
-while getopts :hlLps:c:d:u opt; do
+while getopts :hlLus:r: opt; do
     case $opt in
         h ) usage ;;
         l ) list ;;
