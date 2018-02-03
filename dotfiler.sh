@@ -99,7 +99,7 @@ removeSymlinks () {
 }
 
 update () {
-    ( set -x; git pull; git submodule update --init)
+    (set -x; git pull; git submodule update --init)
 }
 
 # Transform long options to short ones to get around getopts limitation
