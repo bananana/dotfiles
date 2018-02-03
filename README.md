@@ -23,7 +23,7 @@ Clone the repo and setup the dotfiles directory:
 
     cd ~
     git clone https://github.com/bananana/dotifles
-    mv dotfiles/ .dotfiles/
+    mv dotfiles/ .dotfiles/ # Optionally, hide the dotfiles directory
     cd .dotfiles
 
 To manage the dotfiles use the included `dotfiler.sh` script. Technically you can use [GNU Stow](https://www.gnu.org/software/stow/) instead, but I find it lacking and not available on certain platforms. Below is the `dotfiler.sh` help message: 
@@ -36,48 +36,51 @@ To manage the dotfiles use the included `dotfiler.sh` script. Technically you ca
 
 Synopsis:
 
-	.dotfiler.sh is a script used to manage dotfiles from a central location. The dotfiles directory
-	should have subdirectories, corresponding to various applications, containing their respective
-	config files (dotfiles). The script creates symlinks from these dotfiles to your home directory.
-	You can then store the entire dotfiles directory on a VCS or the cloud and deploy it on any
-	machine by simply cloning or copying it and this script.
+    ./dotfiler.sh is a script to manage dotfiles from a central directory. 
+    The dotfiles directory should have subdirectories, corresponding to various
+    programs, containing their respective config files (dotfiles). 
+    The script creates symlinks from these dotfiles to your home directory. 
+    You can then store the entire dotfiles directory on a VCS or the cloud and 
+    deploy it on any machine by simply cloning or copying it. 
 
 Usage:
 
-	.dotfiler.sh [ options ] package
+    ./dotfiler.sh [-hlLu] [-s dir] [-r dir]
 
 Options:
 
-	-h  Display this help message
+    -h, --help
+        Display this help message
 
-	-l  List all available packages
+    -l, --list
+        List all available config directories 
 
-	-L  List all available packages, including their contents
+    -L, --list-long
+        List all available config directories, including their contents 
 
-	-p  Pull git submodules. Equivalent to `git submodule update --init`  
+    -u, --update
+        Perform a git pull, update and init any git submodules. Equivalent to:
+        `git pull; git submodule update --init`
 
-	-s package, -c package
-		Create symlinks in $HOME for files found in package directory
+    -s, --symlink dir
+        Create symlinks in $HOME for files found in dir
 
-	-d package
-		Delete symlinks for given package from $HOME 
-
-	-u package
-		Update symlinks for given package
-
+    -r, --remove-symlinks dir
+        Remove symlinks for given dir from $HOME
+ 
 Examples:
 
 	./dotfiler.sh -s bash
-		Symlink dotfiles located in vim directory into $HOME
+		Symlink dotfiles located in bash directory into $HOME
 ```
 
 **Note:** If you're going to use the vim config, then you have to initialize the various bundles, which are stored as git submodules:
 
-	./dotfiler.sh -p
+	./dotfiler.sh -u
 
 Which is equivelent to:
 
-    git submodule update --init
+    git pull; git submodule update --init
 
 <h2 id="configs">Configs</h2>
 
