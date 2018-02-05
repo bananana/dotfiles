@@ -13,6 +13,9 @@ set -e
 # Set PATH environment variable
 export PATH="/usr/local/bin:/usr/bin:/bin"
 
+# Obtain the directory where the script is located
+readonly DIR="$(cd "$(dirname "${0}")" && pwd)"
+
 usage () {
 # Variables for formatting
 U=$(tput smul)  # Underline
@@ -69,6 +72,7 @@ EOF
 }
 
 list () {
+    #cd $DIR
     if command -v tree>/dev/null; then
         tree -d
     else 
@@ -77,6 +81,7 @@ list () {
 }
 
 listLong () {
+    #cd $DIR
     if command -v tree>/dev/null; then
         find . -maxdepth 1 -type d -not \( -path '*git*' -o -path '.' \) \
                -exec tree --noreport -a -L 3 {} \;
@@ -86,11 +91,11 @@ listLong () {
 }
 
 symlink () {
-    find $(pwd)/$1 -maxdepth 1 -name ".*" -exec ln -siv {} $HOME \;
+    find $DIR/$1 -maxdepth 1 -name ".*" -exec ln -siv {} $HOME \;
 }
 
 removeSymlinks () {
-    for lnk in $(find $1 -type f -exec basename {} \;)
+    for lnk in $(find $DIR/$1 -type f -exec basename {} \;)
     do 
         [ -L $HOME/$lnk ] && rm -iv $HOME/$lnk
     done
@@ -110,13 +115,14 @@ for arg in "$@"; do
         "--update"          ) set -- "$@" "-u" ;;
         "--symlink"         ) set -- "$@" "-s" ;;
         "--remove-symlinks" ) set -- "$@" "-r" ;;
+        "--remote"          ) set -- "$@" "-e" ;;
         "--"*               ) echo "Invalid option: $arg" >&2; exit 1 ;;
         *                   ) set -- "$@" "$arg" ;;
     esac
 done
 
 # Process command line options
-while getopts :hlLus:r: opt; do
+while getopts :hlLus:r:e: opt; do
     case $opt in
         h ) usage ;;
         l ) list ;;
@@ -124,6 +130,7 @@ while getopts :hlLus:r: opt; do
 		u ) update ;;
         s ) symlink $OPTARG ;;
         r ) removeSymlinks $OPTARG ;;
+        e ) echo "Remote $OPTARG" ;;
         \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
         : ) echo "Option -$OPTARG requires and arguement" >&2; exit 1 ;;
     esac
