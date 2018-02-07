@@ -106,10 +106,20 @@ update () {
 }
 
 ignore () {
-    if [ ! $(grep -q $OPTARG $DIR/ignore.lst) ]; then
-        echo "$OPTARG"    
-    else 
-        echo "Is in ignore list"
+    # Create the ignore.lst file, if it doesn't already exist
+    [[ ! -f $DIR/ignore.lst ]] && (set -x; touch $DIR/ignore.lst)
+
+    # Append the directory to ignore, if it's not already in ignore.lst
+    #git ls-files -v | grep "^[[:lower:]]"
+    if grep -q $OPTARG $DIR/ignore.lst; then
+        echo "$OPTARG is already in ignore.lst"
+    elif [ -d $DIR/$OPTARG ]; then 
+        #(set -x; git update-index --assume-unchanged $OPTARG/*)
+        #
+        echo "$OPTARG" >> $DIR/ignore.lst
+        echo "$OPTARG added to ignore.lst"
+    else
+        echo "$OPTARG config directory does not exist"
     fi
 }
 
