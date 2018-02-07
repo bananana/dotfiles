@@ -105,6 +105,14 @@ update () {
     (set -x; git pull; git submodule update --init)
 }
 
+ignore () {
+    if [ ! $(grep -q $OPTARG $DIR/ignore.lst) ]; then
+        echo "$OPTARG"    
+    else 
+        echo "Is in ignore list"
+    fi
+}
+
 # Transform long options to short ones to get around getopts limitation
 for arg in "$@"; do
     shift
@@ -116,13 +124,14 @@ for arg in "$@"; do
         "--symlink"         ) set -- "$@" "-s" ;;
         "--remove-symlinks" ) set -- "$@" "-r" ;;
         "--remote"          ) set -- "$@" "-e" ;;
+        "--ignore"          ) set -- "$@" "-i" ;;
         "--"*               ) echo "Invalid option: $arg" >&2; exit 1 ;;
         *                   ) set -- "$@" "$arg" ;;
     esac
 done
 
 # Process command line options
-while getopts :hlLus:r:e: opt; do
+while getopts :hlLus:r:e:i: opt; do
     case $opt in
         h ) usage ;;
         l ) list ;;
@@ -131,6 +140,7 @@ while getopts :hlLus:r:e: opt; do
         s ) symlink $OPTARG ;;
         r ) removeSymlinks $OPTARG ;;
         e ) echo "Remote $OPTARG" ;;
+        i ) ignore ;;
         \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
         : ) echo "Option -$OPTARG requires and arguement" >&2; exit 1 ;;
     esac
