@@ -111,12 +111,21 @@ update () {
     (set -x; git pull; git submodule update --init)
 }
 
+remote () {
+    read -p "Remote user@host: " destination
+    echo "$destination $OPTARG"
+    #dir_base="$(basedir $DIR)"
+    #source="$DIR/$OPTARG"
+    #rsync -e ssh --rsync-path="mkdir -p $HOME/$dir_base/ && rsync" -r $source $destination
+}
+
 exclude () {
     # Exclude unwanted config from git index and remove it. 
     # To list excluded run: git ls-files -v | grep "^[[:lower:]]"
     if [ -d $DIR/$OPTARG ]; then
         (set -x; \
-         git ls-files -z $DIR/$OPTARG | xargs -0 git update-index --assume-unchanged; \
+         git ls-files -z $DIR/$OPTARG | \
+         xargs -0 git update-index --assume-unchanged; \
          rm -r $DIR/$OPTARG)
         echo "$OPTARG added to .git/info/exclude"
     else
@@ -164,7 +173,7 @@ while getopts :hlLus:r:e:x:i: opt; do
 		u ) update ;;
         s ) symlink $OPTARG ;;
         r ) removeSymlinks $OPTARG ;;
-        e ) echo "Remote $OPTARG" ;;
+        e ) remote ;;
         x ) exclude ;;
         i ) include ;;
         \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
