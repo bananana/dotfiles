@@ -40,7 +40,7 @@ ${B}Synopsis:${N}
 
 ${B}Usage:${N}
     
-    ${B}$0${N} [${B}-hlLu${N}] [${B}-s${N} ${U}dir${RU}] [${B}-r${N} ${U}dir${RU}]
+    ${B}$0${N} [${B}-hlLu${N}] [${B}-s${N}|${B}-r${N}|${B}-x${N}|${B}-i${N} ${U}dir${RU}] 
 
 ${B}Options:${N}
 
@@ -54,14 +54,20 @@ ${B}Options:${N}
         List all available config directories, including their contents 
 
     ${B}-u${N}, ${B}--update${N}
-        Perform a git pull, update and init any git submodules. Equivalent to:
-        \`git pull; git submodule update --init\`
+        Perform a git pull, update and init any git submodules
 
     ${B}-s${N}, ${B}--symlink${N} ${U}dir${RU}
         Create symlinks in $HOME for files found in ${U}dir${RU}
 
     ${B}-r${N}, ${B}--remove-symlinks${N} ${U}dir${RU}
         Remove symlinks for given ${U}dir${RU} from $HOME 
+
+    ${B}-x${N}, ${B}--exclude${N} ${U}dir${RU}
+        Exclude ${U}dir${RU} from git index and remove it from $DIR
+
+    ${B}-i${N}, ${B}--include${N} ${U}dir${RU}
+        Reverse ${B}--exclude${N} by removing ${U}dir${RU} from .git/info/exclude
+        and checking it out from the repo
 
 ${B}Examples:${N}
 
@@ -106,31 +112,26 @@ update () {
 }
 
 exclude () {
-    #if grep -q $OPTARG $DIR/ignore.lst; then
-    #    echo "$OPTARG is already in ignore.lst"
-    #elif [ -d $DIR/$OPTARG ]; then 
-    #    #(set -x; git update-index --assume-unchanged $OPTARG/*)
-    #    #
-    #    echo "$OPTARG" >> $DIR/ignore.lst
-    #    echo "$OPTARG added to ignore.lst"
-    #else
-    #    echo "$OPTARG config directory does not exist"
-    #fi
-    
-    #git ls-files -v | grep "^[[:lower:]]"
+    # Exclude unwanted config from git index and remove it. 
+    # To list excluded run: git ls-files -v | grep "^[[:lower:]]"
     if [ -d $DIR/$OPTARG ]; then
-        (cd $DIR/$OPTARG; \
-         set -x; \
-         git ls-files -z | xargs -0 git update-index --assume-unchanged)
+        (set -x; \
+         git ls-files -z $DIR/$OPTARG | xargs -0 git update-index --assume-unchanged; \
+         rm -r $DIR/$OPTARG)
+        echo "$OPTARG added to .git/info/exclude"
     else
         echo "Config directory does not exist: $OPTARG"
     fi
 }
 
 include () {
+    # Include previously excluded config and check it out from the repo
     if [ ! "$(git ls-files -v | grep -q $OPTARG)" ]; then
         inc="$(git ls-files -v | grep $OPTARG | cut -d ' ' -f 2)"
-        (set -x; git update-index --no-assume-unchanged $inc)
+        (set -x; \
+         git update-index --no-assume-unchanged $inc; \
+         git fetch; \
+         git checkout -- $OPTARG/)
     else
         echo "$OPTARG is not in .git/info/exclude"
     fi
