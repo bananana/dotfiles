@@ -107,19 +107,27 @@ update () {
 
 ignore () {
     # Create the ignore.lst file, if it doesn't already exist
-    [[ ! -f $DIR/ignore.lst ]] && (set -x; touch $DIR/ignore.lst)
-
+    #[[ ! -f $DIR/ignore.lst ]] && (set -x; touch $DIR/ignore.lst)
+    #
     # Append the directory to ignore, if it's not already in ignore.lst
     #git ls-files -v | grep "^[[:lower:]]"
-    if grep -q $OPTARG $DIR/ignore.lst; then
-        echo "$OPTARG is already in ignore.lst"
-    elif [ -d $DIR/$OPTARG ]; then 
-        #(set -x; git update-index --assume-unchanged $OPTARG/*)
-        #
-        echo "$OPTARG" >> $DIR/ignore.lst
-        echo "$OPTARG added to ignore.lst"
+    #if grep -q $OPTARG $DIR/ignore.lst; then
+    #    echo "$OPTARG is already in ignore.lst"
+    #elif [ -d $DIR/$OPTARG ]; then 
+    #    #(set -x; git update-index --assume-unchanged $OPTARG/*)
+    #    #
+    #    echo "$OPTARG" >> $DIR/ignore.lst
+    #    echo "$OPTARG added to ignore.lst"
+    #else
+    #    echo "$OPTARG config directory does not exist"
+    #fi
+    
+    #git ls-files -v | grep "^[[:lower:]]"
+    if [ -d $DIR/$OPTARG ]; then
+        (set -x; git update-index --assume-unchanged $OPTARG/*)
+        #(set -x; git ls-files -z | xargs -0 git update-index --assume-unchanged)
     else
-        echo "$OPTARG config directory does not exist"
+        echo "Config directory does not exist: $OPTARG"
     fi
 }
 
