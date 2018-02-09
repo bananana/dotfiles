@@ -112,11 +112,19 @@ update () {
 }
 
 remote () {
-    read -p "Remote user@host: " destination
-    echo "$destination $OPTARG"
-    #dir_base="$(basedir $DIR)"
-    #source="$DIR/$OPTARG"
-    #rsync -e ssh --rsync-path="mkdir -p $HOME/$dir_base/ && rsync" -r $source $destination
+    if [ -d $DIR/$OPTARG ]; then
+        dir_base="$(basename $DIR)"
+        src="$DIR/$OPTARG"
+
+        # Get the remote login credentials
+        read -p "Remote user@host: " dest
+
+        (set -x; \
+         rsync -e ssh --rsync-path="mkdir -p ~/$dir_base/ && rsync" \
+               -r $src $dest:~/$dir_base/)
+    else
+        echo "Config directory does not exist: $OPTARG"
+    fi
 }
 
 exclude () {
