@@ -33,10 +33,10 @@ ${B}Synopsis:${N}
 
     ${B}$0${N} is a script to manage dotfiles from a central directory. 
     The dotfiles directory should have subdirectories, corresponding to various
-    programs, containing their respective config files (dotfiles). 
-    The script creates symlinks from these dotfiles to your home directory. 
-    You can then store the entire dotfiles directory on a VCS or the cloud and 
-    deploy it on any machine by simply cloning or copying it. 
+    programs, containing their respective config files (dotfiles). The script 
+    creates symlinks from these dotfiles to your home directory. You can store 
+    the entire dotfiles directory on a VCS or the cloud and deploy it on any 
+    machine by simply cloning or copying it. 
 
 ${B}Usage:${N}
     

@@ -5,6 +5,7 @@ A collection of my dotfiles.
 ## Table of Contents
 
 * [Installation](#installation)
+* [Usage](#usage)
 * [Configs](#configs)
     * [bash](#configs-bash)
         * [Prompt](#configs-bash-prompt)
@@ -19,60 +20,44 @@ A collection of my dotfiles.
 
 <h2 id="installation">Installation</h2>
 
-Clone the repo and setup the dotfiles directory: 
+Clone the repo into a directory of your choice. Home is recommended to keep things neat but any directory will work.
 
     cd ~
     git clone https://github.com/bananana/dotifles
-    mv dotfiles/ .dotfiles/ # Optionally, hide the dotfiles directory
-    cd .dotfiles
 
-To manage the dotfiles use the included `dotfiler.sh` script. Technically you can use [GNU Stow](https://www.gnu.org/software/stow/) instead, but I find it lacking and not available on certain platforms. Below is the `dotfiler.sh` help message: 
+Optionally, hide the dotfiles directory.
+
+    mv dotfiles/ .dotfiles/ 
+
+<h2 id="usage">Usage</h2>
+
 ```
      _       _    __ _ _
   __| | ___ | |_ / _(_| | ___ _ __
  / _` |/ _ \| __| |_| | |/ _ | '__|
 | (_| | (_) | |_|  _| | |  __| |
  \__,_|\___/ \__|_| |_|_|\___|_|
+```
 
-Synopsis:
+`./dotfiler.sh` is a script to manage dotfiles from a central directory. The dotfiles directory should have subdirectories, corresponding to various programs, containing their respective config files (dotfiles). The script creates symlinks from these dotfiles to your home directory. 
+You can store the entire dotfiles directory on a VCS or the cloud and deploy it on any machine by simply cloning or copying it. 
 
-    ./dotfiler.sh is a script to manage dotfiles from a central directory. 
-    The dotfiles directory should have subdirectories, corresponding to various
-    programs, containing their respective config files (dotfiles). 
-    The script creates symlinks from these dotfiles to your home directory. 
-    You can then store the entire dotfiles directory on a VCS or the cloud and 
-    deploy it on any machine by simply cloning or copying it. 
+Run `./dotfiler.sh -h` for full documentation. Below is a summary of it's functionality.
 
-Usage:
+| Options    | Description |
+|------------|-------------|
+|`-h, --help`|Display help |
+|`-l, --list`|List all available config directories |
+|`-L, --list-long`|List all available config directories, including their contents |
+|`-u, --update`|Perform git pull, update and init any git submodules |
+|`-s, --symlink <dir>`|Create symlinks in home directory for files found in `<dir>` |
+|`-r, --remove-symlinks <dir>`|Remove symlinks for files found in `<dir>` from home directory |
+|`-x, --exclude <dir>`|Exclude `<dir>` from git index and remove it from dotfiles directory |
+|`-i, --include <dir>`|Reverse `--exclude` by removing `<dir>` from `.git/info/exlclude` and checking it out from the repo |
 
-    ./dotfiler.sh [-hlLu] [-s dir] [-r dir]
-
-Options:
-
-    -h, --help
-        Display this help message
-
-    -l, --list
-        List all available config directories 
-
-    -L, --list-long
-        List all available config directories, including their contents 
-
-    -u, --update
-        Perform a git pull, update and init any git submodules. Equivalent to:
-        `git pull; git submodule update --init`
-
-    -s, --symlink dir
-        Create symlinks in $HOME for files found in dir
-
-    -r, --remove-symlinks dir
-        Remove symlinks for given dir from $HOME
- 
-Examples:
+E.g. symlink dotfiles located in "bash" directory into home directory:
 
 	./dotfiler.sh -s bash
-		Symlink dotfiles located in bash directory into $HOME
-```
 
 **Note:** If you're going to use the vim config, then you have to initialize the various bundles, which are stored as git submodules:
 
