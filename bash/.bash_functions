@@ -58,6 +58,12 @@ testport() {
     (( $? == 0 )) && exec 6<&- && exec 6>&-
 }
 
+# Find out which processes are listening on a port
+# Usage listening <port>
+listening() {
+    lsof -n -i TCP:$1 | grep LISTENING
+}
+
 # Automatically pick the right application to unpack a compressed file based on
 # file extension.
 # Taken from http://dotshare.it/dots/1436/

@@ -128,11 +128,12 @@ Screenshot:
 
 <h4 id="configs-bash-functions">Functions</h4>
 
-|Function   |Usage                                             |Description                     |
-|-----------|--------------------------------------------------|--------------------------------|
-|`cd_func`  |`cd --`                                           |Show your cd history            |
-|`testport` |`testPort <servername \|\| ip> <port> <protocol>` |Quickly check if a port is open |
-|`unpack`   |`unpack <compressed_file>`                        |Uncompress a compressed file    |
+|Function   |Usage                                             |Description                                      |
+|-----------|--------------------------------------------------|-------------------------------------------------|
+|`cd_func`  |`cd --`                                           |Show your cd history                             |
+|`testport` |`testport <servername \|\| ip> <port> <protocol>` |Quickly check if a port is open                  |
+|`listening`|`listening <port>                                 |Find out which processes are listening on a port |
+|`unpack`   |`unpack <compressed_file>`                        |Uncompress a compressed file                     |
 
 ---
 
