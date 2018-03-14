@@ -22,7 +22,7 @@ U=$(tput smul)  # Underline
 RU=$(tput rmul) # Remove underline
 B=$(tput bold)  # Bold
 N=$(tput sgr0)  # Normal
-cat << EOF
+less -r << EOF
      _       _    __ _ _           
   __| | ___ | |_ / _(_| | ___ _ __ 
  / _\` |/ _ \| __| |_| | |/ _ | '__|
