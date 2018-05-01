@@ -13,7 +13,8 @@
 	url = https://github.com/itchyny/lightline.vim
 [submodule "vim/.vim/bundle/vim-surround"]
 	path = vim/.vim/bundle/vim-surround
-	url = git://github.com/tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround
+    ignore = dirty
 [submodule "vim/.vim/bundle/Colorizer"]
 	path = vim/.vim/bundle/Colorizer
 	url = https://github.com/chrisbra/Colorizer
