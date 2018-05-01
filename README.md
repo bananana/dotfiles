@@ -162,5 +162,6 @@ My vim config. Included are [emmet-vim](https://github.com/mattn/emmet-vim), [li
 |`Ctrl + (h\|j\|k\|l)`  |Move between panes in given direction             |
 |`Shift + (h\|j\|k\|l)` |Resizes panes in given direction                  | 
 |`Ctrl + n`             |Toggles nerdtree                                  |
+|`F4`                   |Toggle Colorizer. Equivalent to `:ColorToggle`    |
 |`F5`                   |Toggles paste mode                                |
 |`Space`                |Removes search highlighting. Equivalent to `:noh` |

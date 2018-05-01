@@ -14,3 +14,6 @@
 [submodule "vim/.vim/bundle/vim-surround"]
 	path = vim/.vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule "vim/.vim/bundle/Colorizer"]
+	path = vim/.vim/bundle/Colorizer
+	url = https://github.com/chrisbra/Colorizer
