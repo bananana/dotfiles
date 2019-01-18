@@ -33,7 +33,7 @@ set ruler
 set backspace=indent,eol,start
 
 " Cursor line
-hi CursorLine   cterm=none ctermbg=229 ctermfg=none
+hi CursorLine   cterm=none ctermbg=230 ctermfg=none
 augroup CursorLine
     au!
     au VimEnter * setlocal cursorline
