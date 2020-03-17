@@ -69,6 +69,9 @@ ${B}Options:${N}
         Reverse ${B}--exclude${N} by removing ${U}dir${RU} from .git/info/exclude
         and checking it out from the repo
 
+    ${B}-d${N}, ${B}--list-excluded${N}
+        List config directories exluded with ${B}--exclude${n}
+
 ${B}Examples:${N}
 
     $0 ${B}-s${N} ${U}bash${RU}
@@ -130,6 +133,7 @@ remote () {
 exclude () {
     # Exclude unwanted config from git index and remove it. 
     # To list excluded run: git ls-files -v | grep "^[[:lower:]]"
+    # Or use the --list-excluded flag
     if [ -d $DIR/$OPTARG ]; then
         (set -x; \
          git ls-files -z $DIR/$OPTARG | \
@@ -154,6 +158,10 @@ include () {
     fi
 }
 
+listExcluded () {
+    git ls-files -v | grep "^[[:lower:]]" | cut -d ' ' -f 2 | cut -d '/' -f 1
+}
+
 # Transform long options to short ones to get around getopts limitation
 for arg in "$@"; do
     shift
@@ -167,13 +175,14 @@ for arg in "$@"; do
         "--remote"          ) set -- "$@" "-e" ;;
         "--exclude"         ) set -- "$@" "-x" ;;
         "--include"         ) set -- "$@" "-i" ;;
+        "--list-excluded"   ) set -- "$@" "-d" ;;
         "--"*               ) echo "Invalid option: $arg" >&2; exit 1 ;;
         *                   ) set -- "$@" "$arg" ;;
     esac
 done
 
 # Process command line options
-while getopts :hlLus:r:e:x:i: opt; do
+while getopts :hlLus:r:e:x:i:d opt; do
     case $opt in
         h ) usage ;;
         l ) list ;;
@@ -184,6 +193,7 @@ while getopts :hlLus:r:e:x:i: opt; do
         e ) remote ;;
         x ) exclude ;;
         i ) include ;;
+        d ) listExcluded ;;
         \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
         : ) echo "Option -$OPTARG requires and arguement" >&2; exit 1 ;;
     esac
