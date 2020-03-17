@@ -12,6 +12,10 @@ filetype plugin indent on
 colorscheme lucius
 LuciusWhite
 
+" Backup and swap directories
+set backupdir=/tmp//,.
+set dir=/tmp//,.
+
 " Status line
 set laststatus=2
 set noshowmode
