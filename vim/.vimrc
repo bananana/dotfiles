@@ -8,9 +8,9 @@ let g:is_bash = 1
 execute pathogen#infect()
 filetype plugin indent on
 
-" Enable color scheme
+" Color scheme
 colorscheme lucius
-LuciusWhite
+LuciusDark
 
 " Backup and swap directories
 set backupdir=/tmp//,.
@@ -20,15 +20,20 @@ set dir=/tmp//,.
 set laststatus=2
 set noshowmode
 let g:lightline = {
-    \ 'colorscheme': 'one',
+    \ 'colorscheme': 'wombat',
     \ }
 
-" Turn syntax highlighting on
+" Syntax highlighting
 syntax on
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Line numbers 
 set number
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &nu | set nornu | endif
+augroup END
 
 " Ruler
 set ruler
@@ -37,7 +42,9 @@ set ruler
 set backspace=indent,eol,start
 
 " Cursor line
-hi CursorLine   cterm=none ctermbg=230 ctermfg=none
+hi CursorLine   cterm=none ctermbg=238
+hi CursorLineNr cterm=none ctermbg=238
+
 augroup CursorLine
     au!
     au VimEnter * setlocal cursorline
@@ -92,6 +99,4 @@ map <silent> <S-k> :resize +5<CR>
 map <silent> <S-h> :vertical resize -5<CR>
 map <silent> <S-l> :vertical resize +5<CR>
 map <F4> :ColorToggle<CR>
-
-" Use F5 to toggle paste mode
 set pastetoggle=<f5>

@@ -1,9 +1,3 @@
-# vim: set filetype=sh:
-
-# **Note:** Hack font is recommended, as it seems to be the best at rendering 
-# box drawing characters required for this custom prompt. 
-# You can find it here https://github.com/source-foundry/Hack
-
 # Use color prompt if xterm-color (or xterm-256color) is the terminal emulator. 
 case "$TERM" in
     xterm-*color) color_prompt=yes;;
