@@ -8,20 +8,27 @@ let g:is_bash = 1
 execute pathogen#infect()
 filetype plugin indent on
 
+" Get Gnome color scheme. default == light, prefer-dark == dark
+let $gnome_color_scheme = system('gsettings get org.gnome.desktop.interface color-scheme | tr -d "''" | tr -d \\n')
+
 " Color scheme
 colorscheme lucius
-LuciusDark
-
-" Backup and swap directories
-set backupdir=/tmp//,.
-set dir=/tmp//,.
+if $gnome_color_scheme == "default"
+    LuciusWhite
+else
+    LuciusDark
+endif
 
 " Status line
 set laststatus=2
 set noshowmode
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
+    \ 'colorscheme': 'one',
     \ }
+
+" Backup and swap directories
+set backupdir=/tmp//,.
+set dir=/tmp//,.
 
 " Syntax highlighting
 syntax on
@@ -42,8 +49,8 @@ set ruler
 set backspace=indent,eol,start
 
 " Cursor line
-hi CursorLine   cterm=none ctermbg=238
-hi CursorLineNr cterm=none ctermbg=238
+"hi CursorLine   cterm=none ctermbg=238
+"hi CursorLineNr cterm=none ctermbg=238
 
 augroup CursorLine
     au!
