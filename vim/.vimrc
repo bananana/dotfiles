@@ -8,23 +8,28 @@ let g:is_bash = 1
 execute pathogen#infect()
 filetype plugin indent on
 
-" Get Gnome color scheme. default == light, prefer-dark == dark
-let $gnome_color_scheme = system('gsettings get org.gnome.desktop.interface color-scheme | tr -d "''" | tr -d \\n')
+" Get Gnome color scheme
+let $gnome_color_scheme = system('gsettings get org.gnome.desktop.interface color-scheme
+        \ | tr -d "''"
+        \ | tr -d \\n')
 
-" Color scheme
+" Set vim color scheme based on Gnome color scheme
 colorscheme lucius
-if $gnome_color_scheme == "default"
+if $gnome_color_scheme == "default" || "prefer-light"
     LuciusWhite
 else
-    LuciusDark
+    LuciusBlack
 endif
 
 " Status line
 set laststatus=2
 set noshowmode
-let g:lightline = {
-    \ 'colorscheme': 'one',
-    \ }
+let g:lightline = { 'colorscheme': 'one', }
+autocmd OptionSet background
+        \ execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/one.vim') 
+        \ | call lightline#init()  
+        \ | call lightline#colorscheme()
+        \ | call lightline#update()
 
 " Backup and swap directories
 set backupdir=/tmp//,.
@@ -38,8 +43,10 @@ syntax on
 set number
 augroup numbertoggle
     autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &nu | set nornu | endif
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * 
+        \ if &nu && mode() != "i" | set rnu | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave * 
+        \ if &nu | set nornu | endif
 augroup END
 
 " Ruler
@@ -92,7 +99,7 @@ set splitright
 " Only define it when not defined already.
 if !exists(":DiffOrig")
     command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-            \ | wincmd p | diffthis
+        \ | wincmd p | diffthis
 endif
 
 " Key mappings
