@@ -12,7 +12,6 @@ A collection of my dotfiles.
         * [Aliases](#configs-bash-aliases)
         * [Functions](#configs-bash-functions)
     * [conky](#configs-conky)
-    * [mintty](#configs-mintty)
     * [tmux](#configs-tmux)
         * [Custom key bindings](#configs-tmux-bindings)
     * [vim](#configs-vim)
@@ -125,12 +124,6 @@ Screenshot:
 <h3 id="configs-conky">conky</h3>
 
 Conky config inspired by original crunchbang.
-
----
-
-<h3 id="configs-mintty">mintty</h3>
-
-If on Windows and using Cygwin this configures the mintty terminal to match the overall colorscheme and style.
 
 ---
 
