@@ -53,6 +53,7 @@ Run `./dotfiler.sh -h` for full documentation. Below is a summary of it's functi
 |`-r, --remove-symlinks <dir>`|Remove symlinks for files found in `<dir>` from home directory |
 |`-x, --exclude <dir>`|Exclude `<dir>` from git index and remove it from dotfiles directory |
 |`-i, --include <dir>`|Reverse `--exclude` by removing `<dir>` from `.git/info/exlclude` and checking it out from the repo |
+|`-d, ----list-excluded`|List config directories exluded with --exclude |
 
 E.g. symlink dotfiles located in "bash" directory into home directory:
 
@@ -82,9 +83,10 @@ Two line smart prompt. Features:
 * Hightlights hostname in red if logged in through ssh. 
     - **Caveat**: You'll need to source this bash config on remote host either by cloning this repo into it or manually uploading the files. You can also theoretically pass the $PS1 environment variable to remote host with ssh `-t` option, but this feature is often disabled in server configuration by default.
 
-Screenshot:
+Preview:
 
-![ps1](https://pavelmamontov.com/content/blog/images/ps1_prompt_screenshot.png)
+    ┌─[username@hostname]─[cwd]
+    └──╼
 
 <h4 id="configs-bash-aliases">Aliases</h4>
 
@@ -103,12 +105,6 @@ Screenshot:
 |`...`    |`cd ../..`            |
 |`....`   |`cd ../../..`         |
 |`.....`  |`cd ../../../..`      |
-|`ports`  |`netstat -tulanp`     |
-|`headers`|`curl -I`             |
-
-`alert` alias is an easy way to call `notify-send` for long running commands. It will show the command in your notifications when it completes. For example:
-
-	sleep 5; alert 
 
 <h4 id="configs-bash-functions">Functions</h4>
 
@@ -129,7 +125,7 @@ Conky config inspired by original crunchbang.
 
 <h3 id="configs-tmux">tmux</h3>
 
-A basic tmux config with some vim-like custom key assignments. The status line is off by default, I think it's redundant and just takes up space. If you need a list of available windows do `<prefix> + w`.
+A basic tmux config with some vim-like custom key assignments. The status line is off by default.
 
 <h4 id="configs-tmux-bindings">Custom key bindings</h4>
 
@@ -140,7 +136,10 @@ A basic tmux config with some vim-like custom key assignments. The status line i
 |`<prefix> + \|` 	              |Vertical split                                         |
 |`<prefix> + (h\|j\|k\|l)`        |Switches focus between the splits in given direction   |
 |`<prefix> + Ctrl + (h\|j\|k\|l)` |Resizes the currently active split in givend direction |
-|`F2`                             |Toggle status line                                     |
+|`<prefix> + (H\|\L)`             |Swap panes                                             |
+|`<copy_mode> v`                  |Vim-like select in copy mode                           |
+|`<copy_mode> y`                  |Vim-like yank in copy mode                             |
+|`<prefix> + b`                   |Toggle status line                                     |
 
 ---
 
