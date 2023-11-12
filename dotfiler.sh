@@ -114,22 +114,6 @@ update () {
     (set -x; git pull; git submodule update --init)
 }
 
-remote () {
-    if [ -d $DIR/$OPTARG ]; then
-        dir_base="$(basename $DIR)"
-        src="$DIR/$OPTARG"
-
-        # Get the remote login credentials
-        read -p "Remote user@host: " dest
-
-        (set -x; \
-         rsync -e ssh --rsync-path="mkdir -p ~/$dir_base/ && rsync" \
-               -r $src $dest:~/$dir_base/)
-    else
-        echo "Config directory does not exist: $OPTARG"
-    fi
-}
-
 exclude () {
     # Exclude unwanted config from git index and remove it. 
     # To list excluded run: git ls-files -v | grep "^[[:lower:]]"
@@ -172,7 +156,6 @@ for arg in "$@"; do
         "--update"          ) set -- "$@" "-u" ;;
         "--symlink"         ) set -- "$@" "-s" ;;
         "--remove-symlinks" ) set -- "$@" "-r" ;;
-        "--remote"          ) set -- "$@" "-e" ;;
         "--exclude"         ) set -- "$@" "-x" ;;
         "--include"         ) set -- "$@" "-i" ;;
         "--list-excluded"   ) set -- "$@" "-d" ;;
@@ -190,7 +173,6 @@ while getopts :hlLus:r:e:x:i:d opt; do
 		u ) update ;;
         s ) symlink $OPTARG ;;
         r ) removeSymlinks $OPTARG ;;
-        e ) remote ;;
         x ) exclude ;;
         i ) include ;;
         d ) listExcluded ;;
