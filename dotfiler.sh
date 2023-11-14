@@ -81,7 +81,6 @@ EOF
 }
 
 list () {
-    #cd $DIR
     if command -v tree>/dev/null; then
         tree -d
     else 
@@ -90,7 +89,6 @@ list () {
 }
 
 listLong () {
-    #cd $DIR
     if command -v tree>/dev/null; then
         find . -maxdepth 1 -type d -not \( -path '*git*' -o -path '.' \) \
                -exec tree --noreport -a -L 3 {} \;
