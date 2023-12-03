@@ -11,12 +11,10 @@ case $- in
 esac
 
 # If tmux is present, execute it when the shell starts.
-#if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-#    exec tmux new-session -A -s >/dev/null 2>&1
-#fi
-if command -v tmux>/dev/null; then
-    [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    exec tmux new-session -A -s 0 >/dev/null 2>&1
 fi
+
 
 # ALIASES 
 # ----------------------------------------------------------------------------- 
