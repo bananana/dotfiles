@@ -1,6 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-
 # STARTUP
 # ----------------------------------------------------------------------------- 
 # If not running interactively, don't do anything. Removing this can cause 
@@ -11,8 +10,13 @@ case $- in
 esac
 
 # If tmux is present, execute it when the shell starts.
+<<<<<<< HEAD
 if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
     exec tmux new-session -A -s 0 >/dev/null 2>&1
+=======
+if command -v tmux>/dev/null; then
+    [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+>>>>>>> 9525fb6fa9f663d47f78717270047927054a891b
 fi
 
 
