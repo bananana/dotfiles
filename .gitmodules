@@ -1,18 +1,18 @@
 
 [submodule "vim/.vim/bundle/emmet-vim"]
-	path = vim/.vim/bundle/emmet-vim
+	path = vim/.vim/pack/syntax/start/emmet-vim
 	url = https://github.com/mattn/emmet-vim
 [submodule "vim/.vim/bundle/nerdtree"]
-	path = vim/.vim/bundle/nerdtree
+	path = vim/.vim/pack/interface/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
 [submodule "vim/.vim/bundle/vim-lucius"]
-	path = vim/.vim/bundle/vim-lucius
+	path = vim/.vim/pack/colorschemes/start/vim-lucius
 	url = https://github.com/jonathanfilip/vim-lucius
 [submodule "vim/.vim/bundle/lightline"]
-	path = vim/.vim/bundle/lightline
+	path = vim/.vim/pack/interface/start/lightline
 	url = https://github.com/itchyny/lightline.vim
 [submodule "vim/.vim/bundle/vim-surround"]
-	path = vim/.vim/bundle/vim-surround
+	path = vim/.vim/pack/syntax/start/vim-surround
 	url = https://github.com/tpope/vim-surround
     ignore = dirty
 [submodule "tmux/.tmux/plugins/tpm"]
