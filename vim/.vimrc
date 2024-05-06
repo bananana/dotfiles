@@ -4,10 +4,6 @@ set t_Co=256
 " Explicitly set shell to bash
 let g:is_bash = 1
 
-" Pathogen and plugins
-execute pathogen#infect()
-filetype plugin indent on
-
 " Get Gnome color scheme
 let $gnome_color_scheme = system('gsettings get org.gnome.desktop.interface color-scheme
         \ | tr -d "''"
