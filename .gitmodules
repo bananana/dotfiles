@@ -18,3 +18,6 @@
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "vim/.vim/pack/interface/start/vim-obsession"]
+	path = vim/.vim/pack/interface/start/vim-obsession
+	url = https://github.com/tpope/vim-obsession
