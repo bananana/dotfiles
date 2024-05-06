@@ -15,9 +15,6 @@
 	path = vim/.vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround
     ignore = dirty
-[submodule "vim/.vim/bundle/Colorizer"]
-	path = vim/.vim/bundle/Colorizer
-	url = https://github.com/chrisbra/Colorizer
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
