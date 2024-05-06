@@ -16,9 +16,9 @@ let $gnome_color_scheme = system('gsettings get org.gnome.desktop.interface colo
 " Set vim color scheme based on Gnome color scheme
 colorscheme lucius
 if $gnome_color_scheme == "default" || "prefer-light"
-    LuciusWhite
+    LuciusWhiteHighContrast
 else
-    LuciusBlack
+    LuciusBlackHighContrast
 endif
 
 " Status line
@@ -56,9 +56,6 @@ set ruler
 set backspace=indent,eol,start
 
 " Cursor line
-"hi CursorLine   cterm=none ctermbg=238
-"hi CursorLineNr cterm=none ctermbg=238
-
 augroup CursorLine
     au!
     au VimEnter * setlocal cursorline
