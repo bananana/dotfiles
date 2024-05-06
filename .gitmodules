@@ -21,3 +21,6 @@
 [submodule "vim/.vim/pack/interface/start/vim-obsession"]
 	path = vim/.vim/pack/interface/start/vim-obsession
 	url = https://github.com/tpope/vim-obsession
+[submodule "tmux/.tmux/plugins/tmux-sensible"]
+	path = tmux/.tmux/plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible
