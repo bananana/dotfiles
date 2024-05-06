@@ -1,1 +1,0 @@
-Colorizer.vmb: call delete('/home/pmamontov/.vim/plugin/ColorizerPlugin.vim')|call delete('/home/pmamontov/.vim/doc/Colorizer.txt')|call delete('/home/pmamontov/.vim/autoload/Colorizer.vim')
