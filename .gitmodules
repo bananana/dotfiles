@@ -24,3 +24,6 @@
 [submodule "tmux/.tmux/plugins/tmux-sensible"]
 	path = tmux/.tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible
+[submodule "vim/.vim/pack/syntax/start/Colorizer"]
+	path = vim/.vim/pack/syntax/start/Colorizer
+	url = https://github.com/chrisbra/Colorizer
