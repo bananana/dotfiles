@@ -4,18 +4,20 @@ set t_Co=256
 " Explicitly set shell to bash
 let g:is_bash = 1
 
-" Get Gnome color scheme
-let $gnome_color_scheme = system('gsettings get org.gnome.desktop.interface color-scheme
-        \ | tr -d "''"
-        \ | tr -d \\n')
+colorscheme lucius
 
 " Set vim color scheme based on Gnome color scheme
-colorscheme lucius
-if $gnome_color_scheme == "default" || "prefer-light"
-    LuciusWhiteHighContrast
-else
-    LuciusBlackHighContrast
-endif
+function! ChangeBackground()
+    let $gnome_color_scheme = system('gsettings get org.gnome.desktop.interface color-scheme
+        \ | tr -d "''"
+        \ | tr -d \\n')
+    if $gnome_color_scheme == "default" || "prefer-light"
+        LuciusWhiteHighContrast
+    else
+        LuciusBlackHighContrast
+    endif
+endfunction
+call ChangeBackground()
 
 " Status line
 set laststatus=2
