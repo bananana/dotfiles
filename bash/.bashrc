@@ -11,7 +11,7 @@ esac
 
 # If tmux is present, execute it when the shell starts.
 if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-    exec tmux new-session -A -s 0 >/dev/null 2>&1
+    exec tmux new-session -A
 fi
 
 
