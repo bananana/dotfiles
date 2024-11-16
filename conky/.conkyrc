@@ -44,7 +44,7 @@ conky.config = {
 conky.text = [[
 ${font DejaVu Sans Mono:bold}${color green}CPU $hr$color$font
 ${color grey}Usage:$color $cpu%${goto 210}${color grey}Freq:$color ${freq}MHz${goto 410}${color grey}Temp:$color ${hwmon 1 temp 1}°C${goto 610}${color grey}Ld:$color$loadavg
-${cpugraph -l}
+${cpugraph 30 -l}
 ${color grey}01:$color${cpubar cpu1 5,110} ${cpu cpu1}%${goto 180}   ${color grey}06:$color${cpubar cpu6 5,110} ${cpu cpu6}%${goto 380}   ${color grey}11:$color${cpubar cpu11 5,110} ${cpu cpu11}%${goto 580}   ${color grey}16:$color${cpubar cpu16 5,110} ${cpu cpu16}%
 ${color grey}02:$color${cpubar cpu2 5,110} ${cpu cpu2}%${goto 180}   ${color grey}07:$color${cpubar cpu7 5,110} ${cpu cpu7}%${goto 380}   ${color grey}12:$color${cpubar cpu12 5,110} ${cpu cpu12}%${goto 580}   ${color grey}17:$color${cpubar cpu17 5,110} ${cpu cpu17}%
 ${color grey}03:$color${cpubar cpu3 5,110} ${cpu cpu3}%${goto 180}   ${color grey}08:$color${cpubar cpu8 5,110} ${cpu cpu8}%${goto 380}   ${color grey}13:$color${cpubar cpu13 5,110} ${cpu cpu13}%${goto 580}   ${color grey}18:$color${cpubar cpu18 5,110} ${cpu cpu18}%
@@ -63,5 +63,5 @@ ${color grey}/recovery:$color ${fs_used /recovery} / ${fs_size /recovery} ${goto
 ${fs_bar 5,340 /recovery} ${fs_used_perc /recovery}% ${goto 410}${fs_bar 5,340 /boot/efi} ${fs_used_perc /boot/efi}%
 ${font DejaVu Sans Mono:bold}${color green}NETWORK $hr$color$font
 ${color grey}Up:$color ${upspeed enp3s0} ${goto 400} ${color grey}Down:$color ${downspeed enp3s0}
-${upspeedgraph enp3s0 25,380} ${goto 400} ${downspeedgraph enp3s0 25,380}
+${upspeedgraph enp3s0 30,380} ${goto 400} ${downspeedgraph enp3s0 30,380}
 ]]
