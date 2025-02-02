@@ -43,7 +43,7 @@ conky.config = {
 
 conky.text = [[
 ${font DejaVu Sans Mono:bold}${color green}CPU $hr$color$font
-${color grey}Usage:$color $cpu%${goto 210}${color grey}Freq:$color ${freq}MHz${goto 410}${color grey}Temp:$color ${hwmon 1 temp 1}°C${goto 610}${color grey}LA:$color$loadavg
+${color grey}Total usage:$color $cpu%${goto 210}${color grey}Freq:$color ${freq}MHz${goto 410}${color grey}Temp:$color ${hwmon 1 temp 1}°C${goto 610}${color grey}LA:$color$loadavg
 ${cpugraph 30 -l}
 ${color grey}01:$color${cpubar cpu1 5,110} ${cpu cpu1}%${goto 180}   ${color grey}06:$color${cpubar cpu6 5,110} ${cpu cpu6}%${goto 380}   ${color grey}11:$color${cpubar cpu11 5,110} ${cpu cpu11}%${goto 580}   ${color grey}16:$color${cpubar cpu16 5,110} ${cpu cpu16}%
 ${color grey}02:$color${cpubar cpu2 5,110} ${cpu cpu2}%${goto 180}   ${color grey}07:$color${cpubar cpu7 5,110} ${cpu cpu7}%${goto 380}   ${color grey}12:$color${cpubar cpu12 5,110} ${cpu cpu12}%${goto 580}   ${color grey}17:$color${cpubar cpu17 5,110} ${cpu cpu17}%
@@ -51,8 +51,8 @@ ${color grey}03:$color${cpubar cpu3 5,110} ${cpu cpu3}%${goto 180}   ${color gre
 ${color grey}04:$color${cpubar cpu4 5,110} ${cpu cpu4}%${goto 180}   ${color grey}09:$color${cpubar cpu9 5,110} ${cpu cpu9}%${goto 380}   ${color grey}14:$color${cpubar cpu14 5,110} ${cpu cpu14}%${goto 580}   ${color grey}19:$color${cpubar cpu19 5,110} ${cpu cpu19}%
 ${color grey}05:$color${cpubar cpu5 5,110} ${cpu cpu5}%${goto 180}   ${color grey}10:$color${cpubar cpu10 5,110} ${cpu cpu10}%${goto 380}   ${color grey}15:$color${cpubar cpu15 5,110} ${cpu cpu15}%${goto 580}   ${color grey}20:$color${cpubar cpu20 5,110} ${cpu cpu20}%
 ${font DejaVu Sans Mono:bold}${color green}GPU $hr$color$font
-${color grey}Temp:............................$color ${nvidia temp}°C${goto 410}${color grey}Gfx clock:....................$color ${nvidia gpufreq}MHz
-${color grey}Threshold:.......................$color ${nvidia threshold}°C${goto 410}${color grey}Mem clock:....................$color ${nvidia memfreq}MHz
+${color grey}Temp:............................$color ${nvidia temp}°C${goto 410}${color grey}Gfx clock:...................$color ${nvidia gpufreq}MHz
+${color grey}Threshold:.......................$color ${nvidia threshold}°C${goto 410}${color grey}Mem clock:...................$color ${nvidia memfreq}MHz
 ${font DejaVu Sans Mono:bold}${color green}MEMORY $hr$color$font
 ${color grey}RAM:$color $mem / $memmax ${goto 400} ${color grey}Swap:$color $swap / $swapmax
 ${membar 5,340} $memperc% ${goto 410}${swapbar 5,340} $swapperc%
