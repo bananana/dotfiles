@@ -13,13 +13,6 @@ let g:PaperColor_Theme_Options = {
   \     }
   \   }
   \ }
-let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default.dark': {
-  \       'transparent_background': 1
-  \     }
-  \   }
-  \ }
 
 " Status line
 set laststatus=2
