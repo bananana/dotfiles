@@ -30,3 +30,9 @@
 [submodule "vim/.vim/pack/syntax/start/Colorizer"]
 	path = vim/.vim/pack/syntax/opt/Colorizer
 	url = https://github.com/chrisbra/Colorizer
+[submodule "vim/.vim/pack/interface/start/vim-lumen"]
+	path = vim/.vim/pack/interface/start/vim-lumen
+	url = https://github.com/vimpostor/vim-lumen
+[submodule "vim/.vim/pack/colorschemes/start/papercolor-theme"]
+	path = vim/.vim/pack/colorschemes/start/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme
