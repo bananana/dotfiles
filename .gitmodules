@@ -36,3 +36,6 @@
 [submodule "vim/.vim/pack/colorschemes/start/papercolor-theme"]
 	path = vim/.vim/pack/colorschemes/start/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme
+[submodule "vim/.vim/pack/syntax/start/twig.vim"]
+	path = vim/.vim/pack/syntax/start/twig.vim
+	url = https://github.com/nelsyeung/twig.vim
