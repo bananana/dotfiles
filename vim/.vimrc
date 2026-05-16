@@ -1,5 +1,5 @@
-" Set terminal to 256 color xterm
-set t_Co=256 
+" Set terminal colors
+set termguicolors
 
 " Explicitly set shell to bash
 let g:is_bash = 1
@@ -20,9 +20,9 @@ let g:PaperColor_Theme_Options = {
 " Status line
 set laststatus=2
 set noshowmode
-let g:lightline = { 'colorscheme': 'one', }
+let g:lightline = { 'colorscheme': 'PaperColor', }
 autocmd OptionSet background
-        \ execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/one.vim') 
+        \ execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/PaperColor.vim') 
         \ | call lightline#init()  
         \ | call lightline#colorscheme()
         \ | call lightline#update()
@@ -58,6 +58,8 @@ augroup CursorLine
     au WinEnter * setlocal cursorline
     au BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
+    au InsertEnter * setlocal nocursorline
+    au InsertLeave * setlocal cursorline
 augroup END
 
 " Show matching brackets, braces and parenthesis
