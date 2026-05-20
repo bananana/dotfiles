@@ -39,3 +39,6 @@
 [submodule "vim/.vim/pack/syntax/start/twig.vim"]
 	path = vim/.vim/pack/syntax/start/twig.vim
 	url = https://github.com/nelsyeung/twig.vim
+[submodule "tmux/.tmux/plugins/tmux-mode-indicator"]
+	path = tmux/.tmux/plugins/tmux-mode-indicator
+	url = https://github.com/MunifTanjim/tmux-mode-indicator
