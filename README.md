@@ -1,3 +1,7 @@
+# THIS REPO HAS MOVED TO CODEBERG
+
+You can find the most up-to-date version here: [https://codeberg.org/mamont/dotfiles](https://codeberg.org/mamont/dotfiles)
+
 # dotfiles
 
 A collection of my dotfiles. 
